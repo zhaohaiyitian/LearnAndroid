@@ -19,7 +19,6 @@
         android:layout_height="200dp"
         android:layout_margin="20dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/legal_bitmap"
         tools:ignore="ContentDescription" />
 
 </LinearLayout>
