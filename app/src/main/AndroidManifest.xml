@@ -23,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".aidl.BinderActivity"></activity>
+
+        <service android:name=".aidl.service.ServerService"></service>
     </application>
 
 </manifest>
