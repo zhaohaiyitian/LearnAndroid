@@ -25,6 +25,7 @@
         </activity>
 
         <activity android:name=".aidl.BinderActivity"></activity>
+        <activity android:name=".jni.JNIActivity"></activity>
 
         <service android:name=".aidl.service.ServerService"></service>
     </application>

@@ -7,7 +7,7 @@
 #include "Log.h"
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_jack_learn_MainActivity_stringFromJNI(JNIEnv *env ,jobject object) {
+Java_com_jack_learn_jni_JNIActivity_stringFromJNI(JNIEnv *env ,jobject object) {
     std::string hello = "Hello from C++";
     std::string world = "World";
     return env->NewStringUTF(hello.c_str());
@@ -18,13 +18,13 @@ void regist(JNIEnv *env,jobject thiz, jobject callback) {
 }
 
 jint RegisterNatives(JNIEnv *env) {
-    jclass activityClass = env->FindClass("com/jack/learn/MainActivity");
+    jclass activityClass = env->FindClass("com/jack/learn/jni/JNIActivity");
     if (activityClass == NULL) {
         return JNI_ERR;
     }
     JNINativeMethod  methods_MainActivity[] ={
             {   "setAntiBiBCallback",
-                "(Lcom/jack/learn/IAntiDebugCallback;)V",
+                "(Lcom/jack/learn/jni/IAntiDebugCallback;)V",
                 (void *)regist}
 
     };
@@ -47,6 +47,6 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reversed) {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_jack_learn_MainActivity_setAntiBiBCallback(JNIEnv *env, jobject thiz, jobject callback) {
+Java_com_jack_learn_jni_JNIActivity_setAntiBiBCallback(JNIEnv *env, jobject thiz, jobject callback) {
 
 }
