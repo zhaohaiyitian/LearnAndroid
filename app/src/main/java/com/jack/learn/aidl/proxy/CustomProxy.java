@@ -34,6 +34,7 @@ public class CustomProxy implements IPersonManager {
             } else {
                 data.writeInt(0);
             }
+            // flag 0 同步传输  IBinder.FLAG_ONEWAY 异步传输
             mRemote.transact(BinderStub.ADD_PERSON,data,reply,0);
             // 在发送数据后 Client进程的该线程会暂时被挂起
             reply.readException();
