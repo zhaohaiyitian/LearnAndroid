@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("customPlugin")
+//    id("customPlugin")
 }
 
 android {
@@ -36,6 +36,14 @@ android {
     }
     buildFeatures {
         aidl = true
+    }
+
+    // 代表jni工程
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
     }
 }
 
