@@ -2,6 +2,7 @@ package com.jack.learn.jni
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.R
 
@@ -15,7 +16,7 @@ class JNIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jni)
-        Log.d("wangjie",stringFromJNI())
+        findViewById<TextView>(R.id.tvName).text = stringFromJNI()
 
         setAntiBiBCallback(object : IAntiDebugCallback {
             override fun beInjectedDebug() {

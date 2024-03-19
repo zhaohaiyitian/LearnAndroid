@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -23,11 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".aidl.BinderActivity"></activity>
-        <activity android:name=".jni.JNIActivity"></activity>
-
-        <service android:name=".aidl.service.ServerService"></service>
+        <activity android:name=".aidl.BinderActivity" />
+        <activity android:name=".jni.JNIActivity" />
+        <activity android:name=".jetpack.MVVMActivity" />
+        <activity
+            android:name=".kotlin.KotlinActivity"
+            android:exported="false" />
+        <service android:name=".aidl.service.ServerService" />
     </application>
 
 </manifest>
