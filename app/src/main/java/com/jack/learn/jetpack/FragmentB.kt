@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.jack.learn.R
 
 class FragmentB: Fragment() {
@@ -27,6 +28,10 @@ class FragmentB: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(CommonViewModel::class.java)
+        mViewModel.commonData.observe(viewLifecycleOwner) {
+            Log.d("wangie","FragmentB: "+it)
+        }
     }
 
     fun receiveData(data: String) {
