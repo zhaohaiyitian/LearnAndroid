@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.aidl.BinderActivity
+import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.IAntiDebugCallback
 import com.jack.learn.jni.JNIActivity
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btnKotlin).setOnClickListener {
             startActivity(Intent(this,KotlinActivity::class.java))
+        }
+        findViewById<Button>(R.id.pattern).setOnClickListener {
+            startActivity(Intent(this,DesignPatternActivity::class.java))
         }
     }
 

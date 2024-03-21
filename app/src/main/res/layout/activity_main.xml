@@ -31,5 +31,12 @@
         android:text="kotlin"
         android:textSize="17dp"
         android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/pattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动态代理"
+        android:textSize="17dp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
