@@ -5,6 +5,8 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class UserViewModel:ViewModel() {
 
@@ -22,6 +24,9 @@ class UserViewModel:ViewModel() {
 
     // 合并两个LiveData
     fun updateContent(): MediatorLiveData<String> {
+//        viewModelScope.launch {
+//
+//        }
         mergerLiveData.addSource(liveData1, object : Observer<String> {
             override fun onChanged(t: String?) {
                 mergerLiveData.value = t

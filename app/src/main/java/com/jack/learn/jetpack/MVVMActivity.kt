@@ -13,8 +13,9 @@ class MVVMActivity : AppCompatActivity(),OnDataPassListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mvvm)
         val tvContent = findViewById<TextView>(R.id.tvContent)
+        // 这行代码 会去ViewModelStore获取对象，如果没有 会创建一个
         val mViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
-
+        ViewModelProvider(this).get(UserViewModel::class.java)
         mViewModel.text.observe(this) {
             tvContent.text = it
         }

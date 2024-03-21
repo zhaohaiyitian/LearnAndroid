@@ -59,4 +59,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
 
+    // viewModelScope
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha03"
+
+    // lifecycleScope
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha03"
+
 }
