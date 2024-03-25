@@ -1,0 +1,66 @@
+
+
+
+
+
+ViewRootImpl：
+ActivityThread
+  -->handleResumeActivity--> wm.addView(decor, l);
+      -->WindowManagerImpl.addView()
+         -->WindowManagerGlobal.addView()
+               --> new ViewRootImpl(view.getContext(), display)
+                     -->root.setView(view, wparams, panelParentView, userId)
+
+
+ViewRootImpl构造方法中会创建AttachInfo，Choreographer
+ViewRootImpl 在setView方法中，会通过mWindowSession与WMS建立通信
+
+
+PhoneWindow：
+Activity.attach()
+      -->new PhoneWindow()
+      -->mWindowManager = mWindow.getWindowManager() (WindowManagerImpl)
+
+
+
+DecorView：
+Activity.setContentView()
+   -->PhoneWindow.setContentView()
+      -->installDecor()
+         -->mDecor = generateDecor(-1)
+
+
+当Activity调用onCreate方法时，会将布局解析并实例化View,具体显示在页面上时就是在onResume生命周期完成后
+
+总结：
+当onCreate方法中调用setContentView方法时，首先会创建DecorView（如果没有创建的话），然后解析xml布局将View添加到DecorView当中，此时并没有显示
+在onResume方法中，此时会将准备好的DecorView添加到Window当中，此时页面才会可见可交互。
+
+
+view刷新
+WindowManagerGlobal.updateViewLayout()
+  -->ViewRootImpl.setLayoutParams()
+        -->ViewRootImpl.scheduleTraversals()
+        void scheduleTraversals() {
+                if (!mTraversalScheduled) {
+                    mTraversalScheduled = true;
+                    mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();
+                    mChoreographer.postCallback(
+                            Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, null);
+                    notifyRendererOfFramePending();
+                    pokeDrawLockIfNeeded();
+                }
+            }
+这个时候会发送UI刷新的信号,通过postSyncBarrier发送同步屏障，最终进入到ViewRootImpl的performTraversals方法中.
+
+
+发起刷新请求一定是客户端主动申请VSYNC，等到VSYNC返回之后才会刷新，否则就不会刷新
+
+调用FrameDisplayEventReceiver的scheduleVsync方法，此方法会向native层发起VSYNC信号请求任务
+
+VSYNC服务返回VSYNC信号是在FrameDisplayEventReceiver的onVsync方法中回调的
+
+
+
+
+

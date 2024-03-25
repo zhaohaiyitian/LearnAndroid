@@ -1,0 +1,94 @@
+
+事件分发
+首先ViewRootImpl将事件给到DecorView，但是DecorView并没有直接将事件给到ViewGroup，而是先给了Activity，然后Activity将事件给到PhoneWindow
+
+
+
+当一个child消费了一个DOWN事件之后，mFirstTouchTarget就不再为空
+
+当一个View消费了DOWN事件之后，后续的事件系统默认都会给他消费
+
+
+事件冲突解决方案
+内部拦截法
+父view
+override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+    if (ev?.action == MotionEvent.ACTION_DOWN) {
+        super.onInterceptTouchEvent(ev)
+        return false
+    }
+    return true
+}
+子view
+override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+
+        when (ev?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                //不能被拦截
+                parent.requestDisallowInterceptTouchEvent(true)
+            }
+            MotionEvent.ACTION_MOVE -> {
+                var endX = ev.rawX
+                var endY = ev.rawY
+                //竖向滑动
+                if (abs(endX - startX) > abs(endY - startY)) {
+                    parent.requestDisallowInterceptTouchEvent(false)
+                }
+                startX = endX
+                startY = endY
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+}
+这时会触发一个ACTION_CANCEL事件，这个事件是子View事件被上层拦截的时候触发的
+
+外部拦截法
+override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        var intercepted = false
+        when (ev?.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val endX = ev.rawX
+                val endY = ev.rawY
+                //竖向滑动
+                intercepted = abs(endX - startX) > abs(endY - startY)
+
+                startX = endX
+                startY = endY
+            }
+        }
+        return intercepted
+}
+
+
+吸顶方案有哪几种？
+
+滑动的类型：
+1.scroll 手指没有离开屏幕的滑动
+2.fling 手指离开屏幕的惯性滑动
+
+NestedScrolling  嵌套滑动
+
+
+
+RecyclerView 支持嵌套滑动
+ -->startNestedScroll()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
