@@ -13,6 +13,7 @@ import com.jack.learn.jni.IAntiDebugCallback
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.view.CustomViewActivity
+import com.jack.learn.viewpager.ViewPagerActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.apm).setOnClickListener {
             startActivity(Intent(this,APMActivity::class.java))
+        }
+        findViewById<Button>(R.id.viewPager).setOnClickListener {
+            startActivity(Intent(this,ViewPagerActivity::class.java))
         }
     }
 

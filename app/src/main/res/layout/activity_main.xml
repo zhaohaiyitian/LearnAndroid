@@ -52,5 +52,12 @@
         android:text="APM"
         android:textSize="17dp"
         android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ViewPager懒加载"
+        android:textSize="17dp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
