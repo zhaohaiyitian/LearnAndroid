@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.R
+import java.lang.Exception
 
 class JNIActivity : AppCompatActivity() {
 
@@ -24,11 +25,25 @@ class JNIActivity : AppCompatActivity() {
             }
 
         })
+
+        Thread {
+            try {
+                writeTest()
+                Thread.sleep(2000)
+                readTest()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }.start()
     }
 
     //静态注入
     external fun stringFromJNI(): String // C函数
 
     external fun setAntiBiBCallback(callback: IAntiDebugCallback)
+
+    external fun writeTest()
+    external fun readTest()
 
 }
