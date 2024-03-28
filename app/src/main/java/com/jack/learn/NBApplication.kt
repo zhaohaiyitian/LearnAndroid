@@ -27,8 +27,9 @@ class NBApplication: Application() {
 //        val bool = kv.decodeBool("bool")
 //        Log.d("wangjie","$bool")
 
-        Monitor.init(this)
-        Monitor.writeFilters("jack")
+        // JVMTI
+//        Monitor.init(this)
+//        Monitor.writeFilters("jack")
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
