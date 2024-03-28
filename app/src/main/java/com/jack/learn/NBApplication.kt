@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import com.jack.learn.apm.Monitor
 import com.tencent.mmkv.MMKV
 
 /**
@@ -19,12 +20,15 @@ class NBApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val rootDir = MMKV.initialize(this)
-        Log.d("wangjie",rootDir)
-        val kv = MMKV.defaultMMKV()
-        kv.encode("bool",true)
-        val bool = kv.decodeBool("bool")
-        Log.d("wangjie","$bool")
+//        val rootDir = MMKV.initialize(this)
+//        Log.d("wangjie",rootDir)
+//        val kv = MMKV.defaultMMKV()
+//        kv.encode("bool",true)
+//        val bool = kv.decodeBool("bool")
+//        Log.d("wangjie","$bool")
+
+        Monitor.init(this)
+        Monitor.writeFilters("jack")
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

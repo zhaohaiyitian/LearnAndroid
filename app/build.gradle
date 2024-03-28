@@ -16,6 +16,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+            }
+        }
     }
 
     buildTypes {
@@ -36,6 +42,7 @@ android {
     }
     buildFeatures {
         aidl = true
+        viewBinding true
     }
 
     // 代表jni工程
@@ -69,4 +76,15 @@ dependencies {
     // mmkv
     implementation 'com.tencent:mmkv:1.3.3'
 
+    // asyncLayoutInflater
+    implementation 'androidx.asynclayoutinflater:asynclayoutinflater:1.0.0'
+
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:3.0-alpha-1'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    // okhttp
+//    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 }
