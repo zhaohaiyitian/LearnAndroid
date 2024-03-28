@@ -1,0 +1,9 @@
+//proto语法
+syntax = "proto3";
+option java_package = "com.jack.learn";
+//option java_outer_classname = "";
+message Message {
+  string name = 1; // 唯一标识符，用来在消息的二进制的格式中识别各个字段的，一旦开始使用就不能够再改变
+  optional int32 number = 2;
+}
+

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("com.google.protobuf")
 //    id("customPlugin")
 }
 
@@ -54,6 +55,27 @@ android {
     }
 }
 
+protobuf {
+    // 配置proto编译器
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.11.0'
+    }
+    // 这里配置生成目录，编译后会在build的目录下生成对应的java文件
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+//                remove python
+            }
+            task.builtins {
+                java {}
+//                python{}
+            }
+        }
+    }
+    //generatedFilesBaseDir = "$projectDir/src/wangjie"
+}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.8.0")
@@ -84,6 +106,9 @@ dependencies {
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    // protobuf
+    implementation 'com.google.protobuf:protobuf-java:3.11.0'
 
     // okhttp
 //    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
