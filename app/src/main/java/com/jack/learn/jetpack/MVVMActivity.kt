@@ -17,10 +17,8 @@ class MVVMActivity : AppCompatActivity(),OnDataPassListener {
         val mViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
         ViewModelProvider(this).get(UserViewModel::class.java)
         mViewModel.text.observe(this) {
+            Log.d("wangjie",it)
             tvContent.text = it
-        }
-        tvContent.run {
-
         }
         mViewModel.setText(1)
 
