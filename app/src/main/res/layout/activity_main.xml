@@ -67,4 +67,22 @@
         android:textSize="17dp"
         android:textColor="@color/black"/>
 
+   <!--  id是为了第一次findViewById找到这个ViewStub对象，一旦inflate或设置View.VISIBLE，这个id就没用了，因此不要在其他地方使用这个id
+         inflatedId则是指定实际布局的根布局的id,注意这个是可有可无的，一旦声明了，即使实际布局的根布局有指定id,也会被这个覆盖
+         还有另外一种情况就是当有约束作用在ViewStub上，我们就需要使用这个inflatedId,而不是id
+         layout就是要替换ViewStub的实际上的布局
+         注意点：
+         1.注意实际布局的根布局不能是merge
+         2.viewStub只能inflate一次，再次调用会抛异常
+         3.ViewStub的layout_width和layout_height优先级最高，会覆盖实际的布局
+
+         viewstub一旦被inflated就会被实际的布局替换
+         -->
+    <ViewStub
+        android:id="@+id/viewStub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/stub"
+        android:layout="@layout/stub_layout"
+        tools:visibility="visible"/>
 </LinearLayout>

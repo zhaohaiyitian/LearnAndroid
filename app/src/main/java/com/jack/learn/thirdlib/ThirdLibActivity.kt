@@ -42,7 +42,7 @@ class ThirdLibActivity : AppCompatActivity() {
      *  QueuedWork.waitToFinish():在主线程等待QueuedWork中的任务全部执行完
      *
      *  XML解析
-     *  全量更新 会覆盖全部XML文件
+     *  全量更新 会覆盖全部XML文件 通过for循环mModified map集合
      */
     private fun testSP() {
         // name 共享文件的名称，

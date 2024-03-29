@@ -6,6 +6,7 @@ import android.os.Parcelable
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.apm.APMActivity
+import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
@@ -23,32 +24,37 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        findViewById<Button>(R.id.jni).setOnClickListener {
-            startActivity(Intent(this,JNIActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.jetpack).setOnClickListener {
-            startActivity(Intent(this,MVVMActivity::class.java))
-        }
-        findViewById<Button>(R.id.btnKotlin).setOnClickListener {
-            startActivity(Intent(this,KotlinActivity::class.java))
-        }
-        findViewById<Button>(R.id.pattern).setOnClickListener {
-            startActivity(Intent(this,DesignPatternActivity::class.java))
-        }
-        findViewById<Button>(R.id.custom).setOnClickListener {
-            startActivity(Intent(this,CustomViewActivity::class.java))
-        }
-        findViewById<Button>(R.id.apm).setOnClickListener {
-            startActivity(Intent(this,APMActivity::class.java))
-        }
-        findViewById<Button>(R.id.viewPager).setOnClickListener {
-            startActivity(Intent(this,ViewPagerActivity::class.java))
-        }
-        findViewById<Button>(R.id.thirdLib).setOnClickListener {
-            startActivity(Intent(this, ThirdLibActivity::class.java))
+        val viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        viewBinding.apply {
+            jni.click {
+                startActivity(Intent(this@MainActivity,JNIActivity::class.java))
+            }
+            jetpack.click {
+                startActivity(Intent(this@MainActivity,MVVMActivity::class.java))
+            }
+            jetpack.click {
+                startActivity(Intent(this@MainActivity,MVVMActivity::class.java))
+            }
+            btnKotlin.click {
+                startActivity(Intent(this@MainActivity,KotlinActivity::class.java))
+            }
+            pattern.click {
+                startActivity(Intent(this@MainActivity,DesignPatternActivity::class.java))
+            }
+            custom.click {
+                startActivity(Intent(this@MainActivity,CustomViewActivity::class.java))
+            }
+            apm.click {
+                startActivity(Intent(this@MainActivity,APMActivity::class.java))
+            }
+            viewPager.click {
+                startActivity(Intent(this@MainActivity,ViewPagerActivity::class.java))
+            }
+            thirdLib.click {
+                startActivity(Intent(this@MainActivity, ThirdLibActivity::class.java))
+            }
+            viewStub.inflate()
         }
     }
 
