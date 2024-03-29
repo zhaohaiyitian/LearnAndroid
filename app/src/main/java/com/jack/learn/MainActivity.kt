@@ -14,6 +14,11 @@ import com.jack.learn.thirdlib.ThirdLibActivity
 import com.jack.learn.view.CustomViewActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 
+/**
+ * 消息驱动模型
+ * Activity启动流程
+ * AMS-->Binder-->ActivityThread##ApplicationThread-->Handler--发送消息调用各个生命周期的方法
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
