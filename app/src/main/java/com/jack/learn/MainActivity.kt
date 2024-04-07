@@ -13,6 +13,7 @@ import com.jack.learn.jni.JNIActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.ThirdLibActivity
 import com.jack.learn.view.CustomViewActivity
+import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 
 /**
@@ -53,6 +54,9 @@ class MainActivity : AppCompatActivity() {
             }
             thirdLib.click {
                 startActivity(Intent(this@MainActivity, ThirdLibActivity::class.java))
+            }
+            cache.click {
+                startActivity(Intent(this@MainActivity, RecyclerCacheActivity::class.java))
             }
             viewStub.inflate()
         }

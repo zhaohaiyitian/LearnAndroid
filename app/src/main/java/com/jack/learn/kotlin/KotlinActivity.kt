@@ -15,6 +15,25 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadFactory
 
+/**
+ * kotlin代码本质上也是通过kotlin编译器编译后生成VM（虚拟机）能识别的字节码
+ *
+ * 协程
+ * 协程由程序自己创建和调度，不需要操作系统调度，所以协程比线程更加轻量。
+ * 协程不能独立存在，必须依赖于线程
+ * 以同步方式 写异步代码
+ *
+ * suspend 函数相比于普通函数内部多了一个 Continuation 续体实例（Kotlin转成Java代码之后即可看到），suspend函数中可以调用普通函数，但普通函数却不能调用suspend函数
+ * 整体流程如下：执行suspend函数 -> 启动子线程 -> 函数挂起并记录挂起点 -> 协程暂停(主线程依然是活跃的) -> 子线程执行完毕 -> 协程从挂起点恢复
+ *
+ * 挂起函数并不一定会导致协程挂起，只有在发生异步调用时才会挂起
+ *
+ * 协程就是通过传递 Continuation 来控制异步调用流程的：将函数挂起之后执行的逻辑包装起成一个Continuation, 里面包含了挂起点信息，这样当协程恢复时就可以在挂起点继续执行。
+ *
+ * suspend挂起函数的执行流程就是通过CPS变换 + Continuation + 状态机来运转的
+ *
+ * lifecycleScope viewModelScope内部可以在合适的时机自动关闭协程，从而避免内存泄露的发生
+ */
 class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

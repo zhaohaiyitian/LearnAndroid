@@ -2,6 +2,7 @@ package com.jack.learn.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -16,6 +17,11 @@ import com.jack.learn.view.sticky.MyAdapter
 import com.jack.learn.view.sticky.NBItemDecoration
 import com.jack.learn.view.sticky.UserBean
 
+/**
+ * Activity.attach()
+ *    --mWindow = new PhoneWindow(this, window, activityConfigCallback)
+ * PhoneWindow 中有一个 DecorView，在 setContentView 中会将 layoutId生成的View 填充到此 DecorView 中。
+ */
 class CustomViewActivity : AppCompatActivity() {
 
     private var mData: MutableList<UserBean> = ArrayList()
@@ -31,11 +37,15 @@ class CustomViewActivity : AppCompatActivity() {
         recyclerView.adapter = MyAdapter(mData)
 
         val nestScrollView = findViewById<CustomNestedScrollView>(R.id.nestScrollView)
-        val tabLayout = findViewById<LinearLayout>(R.id.llTabLayout)
+        val llTabLayout = findViewById<LinearLayout>(R.id.llTabLayout)
         val tvContent = findViewById<TextView>(R.id.tvContent)
-        tabLayout.post {
-            tabLayout.layoutParams.height = nestScrollView.measuredHeight
-            tabLayout.requestLayout()
+        llTabLayout.post {
+            llTabLayout.layoutParams.height = nestScrollView.measuredHeight
+            llTabLayout.requestLayout()
+        }
+        val customView = findViewById<CustomView>(R.id.customView)
+        customView.post {
+            Log.d("wangjie","${customView.measuredWidth} ${customView.width}")
         }
     }
 
