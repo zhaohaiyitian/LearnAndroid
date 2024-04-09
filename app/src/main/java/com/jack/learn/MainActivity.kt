@@ -15,6 +15,7 @@ import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
+import io.flutter.embedding.android.FlutterActivity
 
 /**
  * 消息驱动模型
@@ -63,6 +64,9 @@ class MainActivity : AppCompatActivity() {
             }
             customView.click {
                 startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
+            }
+            flutter.click {
+                startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
             }
             viewStub.inflate()
         }

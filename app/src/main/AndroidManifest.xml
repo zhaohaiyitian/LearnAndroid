@@ -66,6 +66,10 @@
             android:exported="false" />
 
         <service android:name=".aidl.service.ServerService" />
+
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
