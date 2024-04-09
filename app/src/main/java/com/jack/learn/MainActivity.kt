@@ -2,8 +2,6 @@ package com.jack.learn
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.apm.APMActivity
 import com.jack.learn.databinding.ActivityMainBinding
@@ -12,9 +10,10 @@ import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.ThirdLibActivity
-import com.jack.learn.view.CustomViewActivity
+import com.jack.learn.view.sticky.CustomViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
+import com.jack.learn.webview.WebViewActivity
 
 /**
  * 消息驱动模型
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity,DesignPatternActivity::class.java))
             }
             custom.click {
-                startActivity(Intent(this@MainActivity,CustomViewActivity::class.java))
+                startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
             }
             apm.click {
                 startActivity(Intent(this@MainActivity,APMActivity::class.java))
@@ -57,6 +56,9 @@ class MainActivity : AppCompatActivity() {
             }
             cache.click {
                 startActivity(Intent(this@MainActivity, RecyclerCacheActivity::class.java))
+            }
+            webView.click {
+                startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
             }
             viewStub.inflate()
         }

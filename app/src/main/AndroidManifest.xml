@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:name=".NBApplication"
@@ -17,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
+        <activity
+            android:name=".webview.WebViewActivity"
+            android:exported="false" />
         <activity
             android:name=".view.viewcache.RecyclerCacheActivity"
             android:exported="false" />
@@ -33,7 +39,7 @@
             android:name=".apm.APMActivity"
             android:exported="false" />
         <activity
-            android:name=".view.CustomViewActivity"
+            android:name=".view.sticky.CustomViewActivity"
             android:exported="false" />
         <activity
             android:name=".designpattern.DesignPatternActivity"

@@ -73,6 +73,13 @@
         android:text="RecyclerView第三级缓存"
         android:textSize="17dp"
         android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="webView优化"
+        android:textSize="17dp"
+        android:textColor="@color/black"/>
 
    <!--  id是为了第一次findViewById找到这个ViewStub对象，一旦inflate或设置View.VISIBLE，这个id就没用了，因此不要在其他地方使用这个id
          inflatedId则是指定实际布局的根布局的id,注意这个是可有可无的，一旦声明了，即使实际布局的根布局有指定id,也会被这个覆盖

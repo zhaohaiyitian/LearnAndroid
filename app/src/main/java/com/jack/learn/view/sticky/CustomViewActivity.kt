@@ -1,21 +1,14 @@
-package com.jack.learn.view
+package com.jack.learn.view.sticky
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.widget.NestedScrollView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.jack.learn.R
-import com.jack.learn.view.sticky.CustomNestedScrollView
-import com.jack.learn.view.sticky.MyAdapter
-import com.jack.learn.view.sticky.NBItemDecoration
-import com.jack.learn.view.sticky.UserBean
+import com.jack.learn.view.CustomView
 
 /**
  * Activity.attach()
