@@ -39,10 +39,10 @@
         android:textSize="17dp"
         android:textColor="@color/black"/>
     <Button
-        android:id="@+id/custom"
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="UI"
+        android:text="NestedScrollView"
         android:textSize="17dp"
         android:textColor="@color/black"/>
     <Button
@@ -78,6 +78,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="webView优化"
+        android:textSize="17dp"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/customView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CustomView"
         android:textSize="17dp"
         android:textColor="@color/black"/>
 

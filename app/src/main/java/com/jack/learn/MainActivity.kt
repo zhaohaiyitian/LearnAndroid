@@ -10,7 +10,8 @@ import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.ThirdLibActivity
-import com.jack.learn.view.sticky.CustomViewActivity
+import com.jack.learn.view.CustomViewActivity
+import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
@@ -42,8 +43,8 @@ class MainActivity : AppCompatActivity() {
             pattern.click {
                 startActivity(Intent(this@MainActivity,DesignPatternActivity::class.java))
             }
-            custom.click {
-                startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
+            scroll.click {
+                startActivity(Intent(this@MainActivity, NestedScrollViewActivity::class.java))
             }
             apm.click {
                 startActivity(Intent(this@MainActivity,APMActivity::class.java))
@@ -59,6 +60,9 @@ class MainActivity : AppCompatActivity() {
             }
             webView.click {
                 startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
+            }
+            customView.click {
+                startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
             }
             viewStub.inflate()
         }

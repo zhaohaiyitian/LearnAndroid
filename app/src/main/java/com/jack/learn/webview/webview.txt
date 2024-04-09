@@ -7,12 +7,12 @@ App中打开WebView的第一步并不是建立连接，而是启动浏览器内�
 
 给WebView放入单独进程 通过aidl进行通信 避免webview崩溃影响主进程
 
-js调用java
+---js调用java
 webView.addJavascriptInterface(new JavaInterface(),"Android")
 WebView安全性问题
 加上@JavascriptInterface注解
 
-java调用js
+---java调用js
 方式一
 webview.loadUrl()
 方式二 API >= 19
