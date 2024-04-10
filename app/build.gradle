@@ -114,4 +114,7 @@ dependencies {
 
     // okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+
+    //koom
+    implementation "com.kuaishou.koom:koom-java-leak:2.2.0"
 }

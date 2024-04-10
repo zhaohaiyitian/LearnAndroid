@@ -6,7 +6,15 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.jack.learn.apm.Monitor
+import com.kwai.koom.base.DefaultInitTask
+import com.kwai.koom.base.MonitorLog
+import com.kwai.koom.base.MonitorManager
+import com.kwai.koom.javaoom.monitor.OOMHprofUploader
+import com.kwai.koom.javaoom.monitor.OOMMonitor
+import com.kwai.koom.javaoom.monitor.OOMMonitorConfig
+import com.kwai.koom.javaoom.monitor.OOMReportUploader
 import com.tencent.mmkv.MMKV
+import java.io.File
 
 /**
  *
@@ -30,7 +38,14 @@ class NBApplication: Application() {
         // JVMTI
 //        Monitor.init(this)
 //        Monitor.writeFilters("jack")
+        initKoom()
+    }
 
+    private fun initKoom() {
+        DefaultInitTask.init(this)
+    }
+
+    private fun lifecycle() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 

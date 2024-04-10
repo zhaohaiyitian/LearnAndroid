@@ -16,5 +16,6 @@ class APMActivity : AppCompatActivity() {
                 setContentView(view)
             }
         })
+        val byte = ByteArray(360000*1024)
     }
 }

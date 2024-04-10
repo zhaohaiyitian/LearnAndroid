@@ -9,12 +9,14 @@ import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.kotlin.KotlinActivity
+import com.jack.learn.thirdlib.koom.OOMMonitorInitTask
 import com.jack.learn.thirdlib.ThirdLibActivity
 import com.jack.learn.view.CustomViewActivity
 import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
+import com.kwai.koom.javaoom.monitor.OOMMonitor
 import io.flutter.embedding.android.FlutterActivity
 
 /**
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        initKOOM()
         viewBinding.apply {
             jni.click {
                 startActivity(Intent(this@MainActivity,JNIActivity::class.java))
@@ -70,6 +73,11 @@ class MainActivity : AppCompatActivity() {
             }
             viewStub.inflate()
         }
+    }
+
+    private fun initKOOM() {
+        OOMMonitorInitTask().init(application)
+        OOMMonitor.startLoop(true,false,5000L)
     }
 
 
