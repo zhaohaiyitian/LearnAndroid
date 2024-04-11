@@ -9,9 +9,12 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/prctl.h>
+#include <link.h>
 
 #include <android/log.h>
 #include <chrono>
+#include <regex.h>
 #include "jvmti.h"
 #include "MemoryFile.h"
 
@@ -23,12 +26,28 @@
 #define ALOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
 #define ALOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
-//extern "C" JNIEXPORT jstring JNICALL
-//Java_com_jack_learn_jni_JNIActivity_stringFromJNI(JNIEnv *env ,jobject object) {
-//    std::string hello = "Hello from C++";
-//    std::string world = "World";
-//    return env->NewStringUTF(hello.c_str());
-//}
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_jack_learn_jni_JNIActivity_stringFromJNI(JNIEnv *env ,jobject object) {
+    std::string hello = "Hello from C++";
+    std::string world = "World";
+    return env->NewStringUTF(hello.c_str());
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_jack_learn_jni_JNIActivity_callAddMethod(JNIEnv *env, jobject thiz, jint number1,
+                                                  jint number2) {
+
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_jack_learn_jni_JNIActivity_changeAge(JNIEnv *env, jobject thiz) {
+    jclass cls = env->GetObjectClass(thiz);
+    jfieldID filed = env->GetFieldID(cls,"age","D");
+    env->SetDoubleField(thiz,filed,200.0);
+}
+
 //
 //void regist(JNIEnv *env,jobject thiz, jobject callback) {
 //    LOGD("--动态注册调用=======成功-->");
