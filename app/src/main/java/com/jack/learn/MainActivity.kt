@@ -8,6 +8,7 @@ import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
+import com.jack.learn.juc.ConcurrentActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.koom.OOMMonitorInitTask
 import com.jack.learn.thirdlib.ThirdLibActivity
@@ -70,6 +71,9 @@ class MainActivity : AppCompatActivity() {
             }
             flutter.click {
                 startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
+            }
+            concurrent.click {
+                startActivity(Intent(this@MainActivity, ConcurrentActivity::class.java))
             }
             viewStub.inflate()
         }
