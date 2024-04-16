@@ -1,10 +1,18 @@
-package com.jack.learn.designpattern.proxy;
+package com.jack.learn.designpattern.dynamicproxy;
 
 import android.util.Log;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * 主要用于在运行时动态地创建一个对象的代理，以实现对原有对象的增强或控制
+ * 优点：解耦
+ *
+ * 在内存中生成字节码  $Proxy0
+ * 1.怎么在内存中生成？
+ *  生成字节码文件  生成Class对象
+ */
 public class MyInvocationHandler implements InvocationHandler {
 
     private Object object;
@@ -14,7 +22,7 @@ public class MyInvocationHandler implements InvocationHandler {
     }
 
     /**
-     * proxy 代表的就是子类对象本身
+     * proxy 代表的是代理对象
      * method 代表的是子类正在调用的是哪个方法
      * args 代表子类调用自己方法 所传递的参数值
      * Object 代表 子类调用自己方法 的返回值

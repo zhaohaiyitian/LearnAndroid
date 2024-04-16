@@ -1,0 +1,8 @@
+
+
+代理对象继承Proxy实现公共的接口
+class $Proxy0 extends Proxy implements Subject {
+
+
+
+}

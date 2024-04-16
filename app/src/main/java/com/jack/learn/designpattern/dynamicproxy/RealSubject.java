@@ -1,4 +1,4 @@
-package com.jack.learn.designpattern.proxy;
+package com.jack.learn.designpattern.dynamicproxy;
 
 import android.util.Log;
 
