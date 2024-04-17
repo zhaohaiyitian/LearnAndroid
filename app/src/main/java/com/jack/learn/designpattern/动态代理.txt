@@ -19,3 +19,5 @@ class $Proxy0 extends Proxy implements Subject {
     }
 
 }
+
+动态代理也是AOP的核心概念之一

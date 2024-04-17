@@ -2,10 +2,14 @@ package com.jack.learn.designpattern
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import com.jack.learn.R
+import com.jack.learn.databinding.ActivityDesignPatternBinding
 import com.jack.learn.designpattern.dynamicproxy.MyInvocationHandler
 import com.jack.learn.designpattern.dynamicproxy.RealSubject
 import com.jack.learn.designpattern.dynamicproxy.Subject
+import com.jack.learn.designpattern.sample.ClickHandlerProxy
 import com.jack.learn.designpattern.staticproxy.AaFactory
 import com.jack.learn.designpattern.staticproxy.Jack
 import java.lang.reflect.Proxy
@@ -13,7 +17,8 @@ import java.lang.reflect.Proxy
 class DesignPatternActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_design_pattern)
+        val viewBinding = ActivityDesignPatternBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
 
         val realSubject = RealSubject()
@@ -28,6 +33,21 @@ class DesignPatternActivity : AppCompatActivity() {
         val proxySubject = Proxy.newProxyInstance(realSubject.javaClass.classLoader,realSubject.javaClass.interfaces,handler) as Subject
         proxySubject.doSomething("动态代理")
 //        testStaticProxy()
+        viewBinding.apply {
+            sample(button)
+        }
+    }
+
+    private fun sample(view: View) {
+        val originalClickListener = View.OnClickListener {
+            // 原始的点击事件处理逻辑
+            Log.d("wangjie","originalClickListener")
+        }
+        val proxyClickListener = Proxy.newProxyInstance(
+            originalClickListener.javaClass.classLoader,
+            originalClickListener.javaClass.interfaces,
+            ClickHandlerProxy(originalClickListener)) as View.OnClickListener
+        view.setOnClickListener(proxyClickListener)
     }
 
     // 客户方法
