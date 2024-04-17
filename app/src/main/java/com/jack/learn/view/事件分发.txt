@@ -1,6 +1,32 @@
+socketpair()创建的是一对已经相互连接的套接字，而socket()则创建一个单独的未连接的套接字。
+这意味着使用socketpair()创建的套接字无需额外的连接步骤，即可进行双向通信，因为它们在创建时就已经建立了连接。
+
+Linux底层产生事件 通过socketpair传递到ViewRootImpl
+当手指触摸屏幕时，屏幕硬件产生触摸信息，触摸信息被系统底层驱动获取，交给IMS，
+IMS会对这个触摸信息进行处理，IMS通过WMS找到要分发的window，随后发送给对应的viewRootImpl
 
 事件分发
-首先ViewRootImpl将事件给到DecorView，但是DecorView并没有直接将事件给到ViewGroup，而是先给了Activity，然后Activity将事件给到PhoneWindow
+首先ViewRootImpl将事件给到DecorView，但是DecorView并没有直接将事件给到ViewGroup，
+而是先给了Activity，然后Activity将事件给到PhoneWindow，最后才交给ViewGroup
+
+
+DecorView交给Activity处理，Activity直接交给PhoneWindow处理，PhoneWindow直接交给其内部的DecorView处理，
+而DecorView则直接调用父类ViewGroup的方法进行分发，ViewGroup则会按照具体的逻辑分发到整个控件树中感兴趣的子控件。
+ViewRootImpl
+  -->mView.dispatchPointerEvent(event)
+    View
+      -->dispatchPointerEvent(event)
+        DecorView
+        -->dispatchTouchEvent()
+          Activity
+          -->dispatchTouchEvent()
+            PhoneWindow
+            -->superDispatchTouchEvent()
+              DecorView
+              -->superDispatchTouchEvent()
+              -->dispatchTouchEvent()
+                ViewGroup
+                -->dispatchTouchEvent()
 
 
 
