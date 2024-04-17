@@ -1,8 +1,21 @@
 
 
-代理对象继承Proxy实现公共的接口
+代理对象继承Proxy，实现公共的接口
+
+最终会在内存中生成字节码文件
 class $Proxy0 extends Proxy implements Subject {
+    private static Method m1; // 自己的方法
+    private static Method m2; // toString()方法
+    private static Method m3; // equals()方法
+    private static Method m4; // hashCode()方法
 
+    protected $Proxy0(InvocationHandler h) {
+        super(h);
+    }
 
+    public final void doSomething(String str) {
+    // 调用invoke()方法时会传入代理实例本身，目标方法和目标方法参数
+      super.h.invoke(this,m1,(Object[])str);
+    }
 
 }
