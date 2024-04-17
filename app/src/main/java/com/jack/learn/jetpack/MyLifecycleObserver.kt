@@ -5,6 +5,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
+/**
+ *  ComponentActivity implements LifecycleOwner
+ *  ReportFragment.injectIfNeededIn(this)
+ *     -->dispatch
+ *        -->handleLifecycleEvent
+ *           -->ReflectiveGenericLifecycleObserver
+ *  通过注解和反射
+ */
 class MyLifecycleObserver: LifecycleObserver {
 
 
