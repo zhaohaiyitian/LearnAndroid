@@ -10,7 +10,8 @@
 
 
 事件冲突解决方案
-内部拦截法
+内部拦截法：是指父容器不拦截任何事件，所有的事件都传递给子元素，如果子元素需要此事件就直接消耗掉，否则就交与父容器进行处理
+
 父view
 override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
     if (ev?.action == MotionEvent.ACTION_DOWN) {
@@ -42,7 +43,7 @@ override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 }
 这时会触发一个ACTION_CANCEL事件，这个事件是子View事件被上层拦截的时候触发的
 
-外部拦截法
+外部拦截法  需要重写父容器的onInterceptTouchEvent方法，在内部做相应的拦截即可。
 override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
         var intercepted = false
         when (ev?.action) {
@@ -71,7 +72,7 @@ override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
 
 NestedScrolling  嵌套滑动
 
-
+onNestedPreScroll
 
 RecyclerView 支持嵌套滑动
  -->startNestedScroll()
