@@ -1,0 +1,40 @@
+
+
+
+
+修复步骤：
+1.获取当前应用的classloader BaseDexClassLoader
+2.反射获取到他的DexPathList属性对象pathList
+3.通过反射调用pathList的dexElements方法把patch.dex转化为element[]
+4.两个element[]进行合并，把patch.dex放到最前面
+5.加载element[]，达到修复的目的
+
+版本兼容：
+版本变动-补丁包加载主要流程上的兼容
+早期版本：makeDexElements
+最近版本：makePathElements
+
+Android N(7.0)混合模式
+
+早期的时候 在PMS进行安装的时候会把dex转换成机器码 导致安装的过程非常慢  但是执行快
+Android N(7.0)之后进行混合编译 把热点代码（高频调用的代码） 存放在profile中 提前编成机器码 存储在data/xxx下
+PMS在解析dex文件的时候可以得到一些指标性的东西：类被调用了多少次，方法被调用了多少次
+除了热点代码，其他的不翻译
+
+混合编译下的热修复会有什么问题？
+
+如果bug出现在热点代码中 bug修复无法进行
+Android N(7.0)混合编译解决方案：
+1.构建自己的类加载器
+2.复制Base内所有的内容
+3.替换所有类加载器
+
+
+
+
+
+C语言
+编译执行
+
+Java
+解释执行：运行起来之后进行翻译各种指令集 是动态的
