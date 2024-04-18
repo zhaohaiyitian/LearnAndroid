@@ -1,0 +1,15 @@
+创建flutter module的命令：flutter create -t module flutter_module
+
+
+
+原生和Flutter的通信是进程间通信
+
+
+JVM进程 Dart进程
+
+
+EventChannel  事件的传递
+
+MethodChannel 方法的传递
+
+BasicMessageChannel 消息的传递

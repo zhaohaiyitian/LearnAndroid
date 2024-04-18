@@ -4,17 +4,11 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import com.jack.learn.apm.Monitor
 import com.kwai.koom.base.DefaultInitTask
-import com.kwai.koom.base.MonitorLog
-import com.kwai.koom.base.MonitorManager
-import com.kwai.koom.javaoom.monitor.OOMHprofUploader
-import com.kwai.koom.javaoom.monitor.OOMMonitor
-import com.kwai.koom.javaoom.monitor.OOMMonitorConfig
-import com.kwai.koom.javaoom.monitor.OOMReportUploader
-import com.tencent.mmkv.MMKV
-import java.io.File
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
+import leakcanary.LeakCanary
 
 /**
  *
@@ -22,6 +16,9 @@ import java.io.File
 
 class NBApplication: Application() {
 
+    companion object {
+        const val CACHED_ENGINE_ID = "MY_CACHED_ENGINE_ID"
+    }
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
     }
@@ -39,6 +36,11 @@ class NBApplication: Application() {
 //        Monitor.init(this)
 //        Monitor.writeFilters("jack")
         initKoom()
+        //在NBApplication中预先初始化Flutter引擎以提升Flutter页面打开速度
+        // 一个Engine代表着一个flutter进程实例(dart解析器，flutter平台线程)
+        val flutterEngine = FlutterEngine(this)
+        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+        FlutterEngineCache.getInstance().put(CACHED_ENGINE_ID,flutterEngine)
     }
 
     private fun initKoom() {

@@ -2,10 +2,17 @@ package com.jack.learn
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
 import com.jack.learn.apm.APMActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
+import com.jack.learn.flutter.FlutterAppActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.juc.ConcurrentActivity
@@ -19,6 +26,10 @@ import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
 import com.kwai.koom.javaoom.monitor.OOMMonitor
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterView
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 
 /**
  * 消息驱动模型
@@ -70,12 +81,25 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
             }
             flutter.click {
-                startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
+                FlutterAppActivity.start(this@MainActivity,"111")
+//                startActivity(FlutterActivity.withNewEngine().initialRoute("/").build(this@MainActivity))
+//                startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
             }
             concurrent.click {
                 startActivity(Intent(this@MainActivity, ConcurrentActivity::class.java))
             }
             viewStub.inflate()
+            showFlutterView(viewBinding.flFlutter)
+        }
+    }
+
+    private fun showFlutterView(layout: FrameLayout) {
+        val flutterView = FlutterView(this)
+        val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+        layout.addView(flutterView,lp)
+        // 关键代码 将Flutter页面添加到FlutterView上
+        FlutterEngineCache.getInstance().get(CACHED_ENGINE_ID)?.let {
+            flutterView.attachToFlutterEngine(it)
         }
     }
 

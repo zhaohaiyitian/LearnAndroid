@@ -21,6 +21,9 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".hotfix.HotFixActivity"
+            android:exported="false" />
+        <activity
             android:name=".juc.ConcurrentActivity"
             android:exported="false" />
         <activity
@@ -72,7 +75,15 @@
 
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
-            android:screenOrientation="portrait" />
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".flutter.FlutterAppActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="DuplicateActivity" />
     </application>
 
 </manifest>
