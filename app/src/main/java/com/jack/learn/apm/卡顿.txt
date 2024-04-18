@@ -1,0 +1,45 @@
+
+
+
+
+ANR:
+主线程
+事件处理事件超载
+
+ActivityManagerService
+ANR触发的流程
+在一个特定的地方发送一个消息
+ 发消息的时候进行延迟发送
+在一个特定的地方移除这个消息
+
+生成路径：
+data/anr
+dropbox
+
+分析步骤：
+1.看主线程状态
+thread_monitor 调用了synchronized
+thread_wait 调用了wait方法
+thread_native 1.本地自己走jni开了线程，2.IO操作 3.调用了AQS LockSupport.park()
+thread_block 死锁
+
+通过时间去找mainlog(系统日志)看cpu运行状态
+CPU状况：发生ANR的进程CPU占用较高有以下几种原因
+1.死锁
+
+
+内核的CPU占用高的话 一般是IO
+
+
+本质：
+本质就是拖了时间
+ 线程挂起
+ CPU不给资源
+ GC导致线程耗时
+
+
+ 监控方案
+ FileObserver 监控data/anr  高版本有兼容问题
+
+ WatchDog
+
