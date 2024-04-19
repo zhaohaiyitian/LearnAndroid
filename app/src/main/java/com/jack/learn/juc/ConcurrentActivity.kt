@@ -7,7 +7,11 @@ import com.jack.learn.databinding.ActivityConcurrentBinding
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.CyclicBarrier
 import java.util.concurrent.Executors
+import java.util.concurrent.RejectedExecutionHandler
 import java.util.concurrent.Semaphore
+import java.util.concurrent.SynchronousQueue
+import java.util.concurrent.ThreadFactory
+import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
 
@@ -22,8 +26,15 @@ class ConcurrentActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 //        testSemaphore()
 //        testCountDownLatch()
-        testCyclicBarrier()
+//        testCyclicBarrier()
+        testThreadPool()
+    }
 
+    private fun testThreadPool() {
+        val threadPoolExecutor = ThreadPoolExecutor(2,2,60,TimeUnit.SECONDS,SynchronousQueue(),
+            Executors.defaultThreadFactory(), ThreadPoolExecutor.CallerRunsPolicy())
+        threadPoolExecutor.allowCoreThreadTimeOut(true) // 核心线程
+        threadPoolExecutor.execute { }
     }
 
     //可以⽤来控制同时访问特定资源的线程数量

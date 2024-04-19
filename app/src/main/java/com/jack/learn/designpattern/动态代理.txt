@@ -21,3 +21,11 @@ class $Proxy0 extends Proxy implements Subject {
 }
 
 动态代理也是AOP的核心概念之一
+
+面试：说一下什么是动态代理？
+动态代理是一种在运行时生成代理对象的机制。它也是AOP的核心概念之一。
+动态代理通常使用Java的反射机制来实现，其中的Proxy类和InvocationHandler接口是实现动态代理的关键组件。
+通过Proxy类的newProxyInstance()方法，可以在运行时动态的创建代理对象，并关联到实现了InvocationHandler接口的实例上。
+通过代理对象调用方法时，实际上会调用实现了InvocationHandler接口的实例的invoke方法。该方法中可以在调用原始对象的方法之前和之后增加额外的处理逻辑。
+
+先说机制和概念 再说原理以及用到的关键组件 再说代码执行和调用流程
