@@ -5,6 +5,17 @@ Linux底层产生事件 通过socketpair传递到ViewRootImpl
 当手指触摸屏幕时，屏幕硬件产生触摸信息，触摸信息被系统底层驱动获取，交给IMS，
 IMS会对这个触摸信息进行处理，IMS通过WMS找到要分发的window，随后发送给对应的viewRootImpl
 
+
+面试回答步骤？
+
+先回答 事件的来源 手指触摸屏幕
+在回答触摸信息是如何产生的 屏幕硬件产生触摸信息
+然后在回答 如何采集的  有系统底层驱动采集 交给IMS
+最后有IMS对触摸信息进行处理
+在以后将触摸信息通过WMS找到对应的window 通过socktpair传递到ViewRootImpl
+
+
+
 事件分发
 首先ViewRootImpl将事件给到DecorView，但是DecorView并没有直接将事件给到ViewGroup，
 而是先给了Activity，然后Activity将事件给到PhoneWindow，最后才交给ViewGroup
