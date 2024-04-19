@@ -1,6 +1,9 @@
 package com.jack.learn;
 
-public class Fruit {
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+
+public class Fruit<T> {
     static int x = 0;//在方法区
     static BigWaterMelon bigWater;// 不会加载进内存 只是在方法区中有个引用
     static BigWaterMelon bigWater2  = new BigWaterMelon(10); // 加载进内存 在堆去开辟对象 方法区中的bigWater2指向堆中的内存地址
@@ -26,4 +29,13 @@ public class Fruit {
         }
 
     }
+
+    public void testReference() {
+        ReferenceQueue<Object> referenceQueue = new ReferenceQueue<>();
+        Object obj = new Object();
+        WeakReference<Object> reference = new WeakReference<>(obj,referenceQueue);
+        reference.get();
+    }
+
+
 }
