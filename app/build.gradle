@@ -23,6 +23,12 @@ android {
                 abiFilters "armeabi-v7a", "arm64-v8a", "x86"
             }
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -115,6 +121,17 @@ dependencies {
     // okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
 
+    //  stetho 网络调试
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+
     //koom
     implementation "com.kuaishou.koom:koom-java-leak:2.2.0"
+
+    // room
+    implementation "androidx.room:room-runtime:2.4.2"
+    annotationProcessor "androidx.room:room-compiler:2.4.2"
+
+    // mqtt
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 }

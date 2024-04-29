@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+面试问：ViewModel是如何实现Activity旋转之后，依旧能恢复数据的？
+ViewModel是存放在ViewModelStore中的Map数据结构中
+当Activity执行Destroy时会把ViewModelStore存放在ActivityClientRecord中
+当Activity重建时ActivityThread会把ActivityClientRecord传递到Activity的attach方法中
+最后会从ViewModelStore的Map中通过Key获取到销毁前的ViewModel

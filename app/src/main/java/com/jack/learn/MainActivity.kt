@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
 import com.jack.learn.apm.APMActivity
+import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.flutter.FlutterAppActivity
@@ -87,6 +88,9 @@ class MainActivity : AppCompatActivity() {
             }
             concurrent.click {
                 startActivity(Intent(this@MainActivity, ConcurrentActivity::class.java))
+            }
+            dataBase.click {
+                startActivity(Intent(this@MainActivity, DataBaseActivity::class.java))
             }
             viewStub.inflate()
             showFlutterView(viewBinding.flFlutter)

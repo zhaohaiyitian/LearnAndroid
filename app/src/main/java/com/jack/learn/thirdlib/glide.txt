@@ -1,0 +1,21 @@
+
+
+
+
+Glide.with().load().into()
+
+with:
+提供上下文信息，以及进行生命周期的绑定 实现加载图片与组件生命周期绑定
+通过无UI的fragment感知生命周期最后调用到RequestManager的生命周期方法
+load:
+对数据的封装(错误图片，占位图片 图片的变换) 以及缓存策略的设置
+into:
+进行数据的加载，资源解码，数据缓存，图片的展示
+
+
+
+缓存：
+内存
+活动缓存 弱引用的HashMap 主要是解决LRU缓存导致的资源损毁的情况
+内存 LruCache
+磁盘 DiskLruCache

@@ -1,0 +1,41 @@
+
+
+
+
+
+
+
+
+
+
+
+
+1.自定义Interceptor：
+比如添加请求头，
+计算接口请求响应的消耗时间
+替换域名
+
+2.RetryAndFollowUpInterceptor:
+它会对连接做一些初始化工作，并且负责在请求失败时的重试，以及重定向的自动后续请求。它的存在，可以让重试和重定向对于开发者是无感知的
+
+3.BridgeInterceptor:
+Content-Length 的计算和添加、gzip 的支持（Accept-Encoding: gzip）、gzip 压缩数据的解包，都是发生在这里.
+
+4.CacheInterceptor:
+它负责 Cache 的处理
+
+
+
+5.ConnectInterceptor:
+它负责建立连接,OkHttp 会创建出网络请求所需要的 TCP 连接（如果是 HTTP），或者是建立在 TCP 连接之上的 TLS 连接（如果是 HTTPS）
+
+
+
+
+
+6.自定义networkInterceptor  一般做网络调试
+
+
+
+7.CallServerInterceptor:
+它负责实质的请求与响应的 I/O 操作，即往 Socket 里写入请求数据，和从 Socket 里读取响应数据

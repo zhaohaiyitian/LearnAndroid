@@ -1,4 +1,4 @@
-package com.jack.learn.architecture;
+package com.jack.learn.architecture.mvp;
 
 import android.os.Bundle;
 import android.os.Handler;

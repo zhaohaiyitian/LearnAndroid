@@ -1,0 +1,58 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+handleBindApplication()
+    installContentProviders(app, data.providers);
+
+ActivityThread.installProvider()-->localProvider.attachInfo(c, info);
+ ContentProvider.attachInfo()
+     ContentProvider.this.onCreate();
+
+初始化 ContentProvider.onCreate()
+
+AppWatcherInstaller 初始化
+
+object : Application.ActivityLifecycleCallbacks by noOpDelegate() {
+      override fun onActivityDestroyed(activity: Activity) {
+        if (configProvider().watchActivities) {
+          objectWatcher.watch( // 内存泄露检测
+              activity, "${activity::class.java.name} received Activity#onDestroy() callback"
+          )
+        }
+      }
+    }
+在Activity的onCreate的方法里创建fragmentCallback里onFragmentDestroyed里进行内存泄露检测
+弱引用+ReferenceQueue
+
+主线程空闲时进行检测
+
+先把对象对应的key加入到怀疑名单中
+为观察目标对象创建弱引用    在GC发生时 把弱引用本身加入到引用队列
+检查怀疑名单中是否还有key
+如果怀疑名单中还有key 主动调用GC  再去检查怀疑名单
+
+如果怀疑名单中还有key 则是发生了内存泄露
+接着进行dump内存 生成hprof文件 放到另一个进程中的子线程进行分析 分析hprof文件采用haha库
+
+
+2.xxx
+泄露对象小于5并且在前台 不会dump内存  分析hprof文件采用shark库
+
+缺点：
+不适用于线上监测
+无法检测申请大容量内存，以及快速的内存增长，FD，线程数 导致的 OOM 问题、Bitmap 内存未释放问题
+
+
+
