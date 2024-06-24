@@ -15,7 +15,7 @@ interface UserDao {
     @Delete
     fun delete(user: User)
 
-    @Query("SELECT * from users")
+    @Query("SELECT * from users ORDER BY id DESC")
     fun getAll():List<User>
 
     @Update

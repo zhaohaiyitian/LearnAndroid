@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.jack.learn.database.AppDataBase
 import com.kwai.koom.base.DefaultInitTask
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -16,6 +17,7 @@ import leakcanary.LeakCanary
 
 class NBApplication: Application() {
 
+    val database: AppDataBase by lazy { AppDataBase.getInstance(applicationContext) }
     companion object {
         const val CACHED_ENGINE_ID = "MY_CACHED_ENGINE_ID"
     }
