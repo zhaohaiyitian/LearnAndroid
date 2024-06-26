@@ -13,10 +13,10 @@ class CustomViewActivity : AppCompatActivity() {
         val viewBinding = ActivityCustomViewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         viewBinding.apply {
-            val animator: ObjectAnimator = ObjectAnimator.ofFloat(customView, "progress", 0f, 275f)
-            animator.duration = 3000
-            animator.interpolator = FastOutSlowInInterpolator()
-            animator.start()
+//            val animator: ObjectAnimator = ObjectAnimator.ofFloat(customView, "progress", 0f, 275f)
+//            animator.duration = 3000
+//            animator.interpolator = FastOutSlowInInterpolator()
+//            animator.start()
         }
     }
 }
