@@ -7,6 +7,25 @@
     android:orientation="vertical"
     tools:context=".kotlin.KotlinActivity">
 
+
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Start" />
+
+
+
+
     <com.jack.learn.view.CustomView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

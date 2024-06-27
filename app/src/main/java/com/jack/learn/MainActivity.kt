@@ -2,13 +2,13 @@ package com.jack.learn
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
+import com.jack.learn.animator.AnimatorActivity
 import com.jack.learn.apm.APMActivity
 import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
@@ -17,20 +17,19 @@ import com.jack.learn.flutter.FlutterAppActivity
 import com.jack.learn.jetpack.MVVMActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.juc.ConcurrentActivity
+import com.jack.learn.kotlin.DSLActivity
 import com.jack.learn.kotlin.KotlinActivity
-import com.jack.learn.thirdlib.koom.OOMMonitorInitTask
 import com.jack.learn.thirdlib.ThirdLibActivity
+import com.jack.learn.thirdlib.koom.OOMMonitorInitTask
 import com.jack.learn.view.CustomViewActivity
 import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
 import com.kwai.koom.javaoom.monitor.OOMMonitor
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterView
-import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
+import kotlin.concurrent.thread
 
 /**
  * 消息驱动模型
@@ -46,10 +45,12 @@ class MainActivity : AppCompatActivity() {
         initKOOM()
         viewBinding.apply {
             jni.click {
+//                thread {
+//                    val p1 = Runtime.getRuntime().exec("ping -c 1 -w 100 www.baidu.com")
+//                    val status = p1.waitFor()
+//                    Log.d("wangjie","$status")
+//                }
                 startActivity(Intent(this@MainActivity,JNIActivity::class.java))
-            }
-            jetpack.click {
-                startActivity(Intent(this@MainActivity,MVVMActivity::class.java))
             }
             jetpack.click {
                 startActivity(Intent(this@MainActivity,MVVMActivity::class.java))
@@ -91,6 +92,12 @@ class MainActivity : AppCompatActivity() {
             }
             dataBase.click {
                 startActivity(Intent(this@MainActivity, DataBaseActivity::class.java))
+            }
+            animator.click {
+                startActivity(Intent(this@MainActivity, AnimatorActivity::class.java))
+            }
+            dsl.click {
+                startActivity(Intent(this@MainActivity, DSLActivity::class.java))
             }
             viewStub.inflate()
             showFlutterView(viewBinding.flFlutter)

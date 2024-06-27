@@ -5,10 +5,16 @@
 
 
 
+Lifecycle实现原理?
+ComponentActivity-->
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+        this.mSavedStateRegistryController.performRestore(savedInstanceState);
+        this.mContextAwareHelper.dispatchOnContextAvailable(this);
+        super.onCreate(savedInstanceState);
+        ReportFragment.injectIfNeededIn(this); // 通过Fragment来感知Activity生命周期
+    }
 
-
-
-
+反射拿到类中的所有方法  筛选出带有注解的方法
 
 面试问：ViewModel是如何实现Activity旋转之后，依旧能恢复数据的？
 ViewModel是存放在ViewModelStore中的Map数据结构中

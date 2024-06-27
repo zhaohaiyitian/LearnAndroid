@@ -5,9 +5,12 @@ import android.os.Build;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.Process;
 import android.os.SystemClock;
 import android.util.Log;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ANRWatchDog extends Thread {
@@ -28,7 +31,7 @@ public class ANRWatchDog extends Thread {
         private long executeTime = SystemClock.uptimeMillis();
 
         @Override
-        public void run() {
+        public void run() { // 由主线程进行执行
             synchronized (ANRWatchDog.this) {
                 mCompleted = true;
                 executeTime = SystemClock.uptimeMillis();

@@ -22,11 +22,15 @@ class MVVMActivity : AppCompatActivity(),OnDataPassListener {
         }
         mViewModel.setText(1)
 
+        // 只在活跃状态下才能收到数据变更
         mViewModel.updateContent().observe(this) {
 //            tvContent.text = it
         }
+        // 不区分是否活跃都能收到数据变更
+//        mViewModel.updateContent().observeForever {
+//
+//        }
         mViewModel.mergerTest()
-
         val fragmentA = FragmentA.getInstance()
         val fragmentB = FragmentB.getInstance()
         supportFragmentManager.beginTransaction().replace(R.id.container_id1,fragmentA).commitAllowingStateLoss()
