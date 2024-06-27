@@ -1,0 +1,23 @@
+
+
+
+
+
+
+Android动画分类
+
+传统动画：
+ 1.帧动画
+
+ 2.补间动画
+scale，alpha，translate，rotate
+
+
+属性动画
+
+使用属性动画
+1.创建ObjectAnimator
+2.设置(Interpolator)差值器
+3.设置(Evaluator)估值器
+4.设置动画时长
+4.开启动画
