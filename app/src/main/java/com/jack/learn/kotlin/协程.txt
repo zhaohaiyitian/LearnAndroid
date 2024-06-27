@@ -19,3 +19,15 @@
 协程中一个最重要的关键字是suspend
 用suspend修饰的函数 叫挂起函数
 挂起和恢复
+
+Flow是kotlin协程库里的一个工具 它提供了响应式编程的方式
+Flow 响应式编程
+StateFlow的基本用法甚至能够做到与LiveData完全一致
+因此可想而知，StateFlow也是粘性的。
+SharedFlow是非粘性的
+
+
+DSL：
+利用扩展函数和高阶函数的组合实现DSL
+用途：
+对于常用的冗余的匿名接口的优化

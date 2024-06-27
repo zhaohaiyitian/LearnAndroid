@@ -1,14 +1,24 @@
 package com.jack.learn.kotlin
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.jack.learn.R
+import com.jack.learn.click
+import com.jack.learn.databinding.ActivityKotlinBinding
+import com.jack.learn.jetpack.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -39,7 +49,19 @@ import java.util.concurrent.ThreadFactory
 class KotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kotlin)
+        val viewBinding = ActivityKotlinBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
+        val mViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
+        viewBinding.apply {
+            button.click {
+                lifecycleScope.launch {
+                    mViewModel.timeFlow.collect {
+                        textView.text = it.toString()
+                    }
+                }
+            }
+        }
         Person("yang",18)
         test()
         testScope()
