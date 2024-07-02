@@ -21,3 +21,8 @@ scale，alpha，translate，rotate
 3.设置(Evaluator)估值器
 4.设置动画时长
 4.开启动画
+
+view.animate()
+
+自定义view时 需要写getter，setter方法
+在setter中调用invalidate进行重绘

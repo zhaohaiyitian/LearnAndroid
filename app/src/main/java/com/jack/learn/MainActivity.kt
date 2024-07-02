@@ -2,7 +2,6 @@ package com.jack.learn
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -14,7 +13,7 @@ import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.flutter.FlutterAppActivity
-import com.jack.learn.jetpack.MVVMActivity
+import com.jack.learn.jetpack.JetPackActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.juc.ConcurrentActivity
 import com.jack.learn.kotlin.DSLActivity
@@ -29,7 +28,6 @@ import com.jack.learn.webview.WebViewActivity
 import com.kwai.koom.javaoom.monitor.OOMMonitor
 import io.flutter.embedding.android.FlutterView
 import io.flutter.embedding.engine.FlutterEngineCache
-import kotlin.concurrent.thread
 
 /**
  * 消息驱动模型
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity,JNIActivity::class.java))
             }
             jetpack.click {
-                startActivity(Intent(this@MainActivity,MVVMActivity::class.java))
+                startActivity(Intent(this@MainActivity,JetPackActivity::class.java))
             }
             btnKotlin.click {
                 startActivity(Intent(this@MainActivity,KotlinActivity::class.java))

@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.jack.learn.R
 
-class MVVMActivity : AppCompatActivity(),OnDataPassListener {
+class JetPackActivity : AppCompatActivity(),OnDataPassListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mvvm)
+        setContentView(R.layout.activity_jetpack)
         val tvContent = findViewById<TextView>(R.id.tvContent)
         // 这行代码 会去ViewModelStore获取对象，如果没有 会创建一个
         val mViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)

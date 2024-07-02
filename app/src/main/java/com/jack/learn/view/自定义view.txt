@@ -13,3 +13,8 @@
               }
           }
             imageView.clipToOutline = true
+
+
+
+   int save = canvas.save(); // 用于保存Canvas的当前状态,每次调用save()时，当前的绘制状态就会被压入一个状态堆栈中
+          canvas.restore(); // 它将从状态堆栈中弹出最上面的状态，并应用于Canvas
