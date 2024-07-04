@@ -21,6 +21,12 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".architecture.mvvm.UserInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".architecture.mvvm.BaseMVVMActivity"
+            android:exported="false" />
+        <activity
             android:name=".architecture.mvp.login.LoginActivity"
             android:exported="false" />
         <activity
@@ -78,7 +84,7 @@
         </activity>
         <activity android:name=".aidl.BinderActivity" />
         <activity android:name=".jni.JNIActivity" />
-        <activity android:name=".jetpack.MVVMActivity" />
+        <activity android:name=".jetpack.JetPackActivity" />
         <activity
             android:name=".kotlin.KotlinActivity"
             android:exported="false" />
