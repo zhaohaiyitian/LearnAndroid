@@ -7,6 +7,7 @@ open class BaseViewModel:ViewModel() {
 
 
     suspend fun <T> safeApiCall(responseBlock: suspend ()->T?): T?{
+
         return responseBlock()
     }
 

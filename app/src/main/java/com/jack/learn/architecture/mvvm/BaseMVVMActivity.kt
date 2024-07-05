@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 import com.jack.learn.R
 import java.lang.reflect.ParameterizedType
 
-open abstract class BaseMVVMActivity<VM:BaseViewModel,VB:ViewBinding> : AppCompatActivity() {
+abstract class BaseMVVMActivity<VM:BaseViewModel,VB:ViewBinding> : AppCompatActivity() {
 
     var mVM:VM? = null
     var mBinding: VB? = null
@@ -30,6 +30,22 @@ open abstract class BaseMVVMActivity<VM:BaseViewModel,VB:ViewBinding> : AppCompa
         val vbMethod = classVB.getMethod("inflate",LayoutInflater::class.java)
         mBinding = vbMethod.invoke(null,layoutInflater) as VB
         setContentView(mBinding?.root)
+    }
+
+    fun bindView(block: VB.() -> Unit) {
+        mBinding?.apply {
+            block()
+        }
+    }
+
+    fun bindViewModel(block: VM.()-> Unit) {
+        mVM?.apply {
+            block()
+        }
+    }
+
+    fun requireViewModel():VM {
+        return mVM!!
     }
 
     override fun onDestroy() {
