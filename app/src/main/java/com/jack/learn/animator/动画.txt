@@ -8,12 +8,18 @@ Android动画分类
 
 传统动画：
  1.帧动画
-
+ 图片过多和过大时 容易产生OOM
  2.补间动画
 scale，alpha，translate，rotate
+应用场景：
+1.ViewGroup中可以控制子元素的出场效果 LayoutAnimation
+2.Activity的进入和退出动画
 
 
 属性动画
+ValueAnimator
+ObjectAnimator
+应用场景：1.用于自定义view
 
 使用属性动画
 1.创建ObjectAnimator

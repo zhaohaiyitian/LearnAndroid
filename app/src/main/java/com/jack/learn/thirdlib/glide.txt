@@ -19,3 +19,6 @@ into:
 活动缓存 弱引用的HashMap 主要是解决LRU缓存导致的资源损毁的情况
 内存 LruCache
 磁盘 DiskLruCache
+
+
+对象池ArrayPool
