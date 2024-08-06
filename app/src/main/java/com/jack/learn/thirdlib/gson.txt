@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+Gson提供了TypeToken来实现对泛型的支持
+
+@Expose配合GsonBuilder使用
+
+
+TypeAdapter可以干预到序列化和反序列化的过程
+
