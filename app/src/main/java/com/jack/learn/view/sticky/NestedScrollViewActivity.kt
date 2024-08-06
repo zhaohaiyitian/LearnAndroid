@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.jack.learn.R
 import com.jack.learn.view.CustomView
 
@@ -32,6 +33,12 @@ class NestedScrollViewActivity : AppCompatActivity() {
         val nestScrollView = findViewById<CustomNestedScrollView>(R.id.nestScrollView)
         val llTabLayout = findViewById<LinearLayout>(R.id.llTabLayout)
         val tvContent = findViewById<TextView>(R.id.tvContent)
+
+        val pool = RecycledViewPool()
+
+        recyclerView.setRecycledViewPool(recyclerView.recycledViewPool)
+        recyclerView.setRecycledViewPool(pool)
+
         llTabLayout.post {
             llTabLayout.layoutParams.height = nestScrollView.measuredHeight
             llTabLayout.requestLayout()

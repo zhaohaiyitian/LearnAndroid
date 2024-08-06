@@ -19,7 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnAndroid"
+        android:extractNativeLibs="true"
         tools:targetApi="31">
+        <activity
+            android:name=".view.pager.PagerVideoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.recycler.RecyclerViewVideoActivity"
+            android:exported="false" />
         <activity
             android:name=".architecture.mvvm.UserInfoActivity"
             android:exported="false" />
@@ -90,6 +97,14 @@
             android:exported="false" />
 
         <service android:name=".aidl.service.ServerService" />
+
+        <provider
+            android:name=".apm.startup.provider.StartupProvider"
+            android:authorities="${applicationId}.android_startup">
+            <meta-data
+                android:name="com.jack.learn.apm.startup.task.Task5"
+                android:value="android.startup" />
+        </provider>
 
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"

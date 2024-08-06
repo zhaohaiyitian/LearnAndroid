@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.jack.learn.R
+import kotlinx.coroutines.launch
 
 class FragmentB: Fragment() {
 
@@ -31,6 +33,13 @@ class FragmentB: Fragment() {
         val mViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(CommonViewModel::class.java)
         mViewModel.commonData.observe(viewLifecycleOwner) {
             Log.d("wangie","FragmentB: "+it)
+        }
+
+        lifecycleScope.launch { // 不推荐使用
+
+        }
+        viewLifecycleOwner.lifecycleScope.launch { // 推荐使用
+
         }
     }
 
