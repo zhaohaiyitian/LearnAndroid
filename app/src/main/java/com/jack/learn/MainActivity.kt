@@ -25,6 +25,8 @@ import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
+import com.jack.skin_core.SkinFactory
+import com.jack.skin_core.SkinManager
 import com.kwai.koom.javaoom.monitor.OOMMonitor
 import io.flutter.embedding.android.FlutterView
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -37,6 +39,7 @@ import io.flutter.embedding.engine.FlutterEngineCache
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        layoutInflater.factory = SkinFactory(delegate)
         super.onCreate(savedInstanceState)
         val viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)

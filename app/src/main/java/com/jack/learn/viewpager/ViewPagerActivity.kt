@@ -2,6 +2,10 @@ package com.jack.learn.viewpager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.PersistableBundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -32,6 +36,13 @@ class ViewPagerActivity : AppCompatActivity() {
         val pagerAdapter = MyViewPagerAdapter(supportFragmentManager,fragments)
         viewPager.adapter = pagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+    }
 
+    /**
+     * 把所有的fragment 全部保存到fragmentManagerState这个类中
+     * active
+     */
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
     }
 }

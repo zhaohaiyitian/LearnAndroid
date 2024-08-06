@@ -34,10 +34,13 @@ Java_com_jack_learn_jni_JNIActivity_stringFromJNI(JNIEnv *env ,jobject object) {
 }
 
 extern "C"
-JNIEXPORT jint JNICALL
+JNIEXPORT void JNICALL
 Java_com_jack_learn_jni_JNIActivity_callAddMethod(JNIEnv *env, jobject thiz, jint number1,
                                                   jint number2) {
-
+    jclass cls = env->GetObjectClass(thiz);
+    jmethodID md = env->GetMethodID(cls,"add", "(II)I");
+    int result = env->CallIntMethod(thiz,md,number1,number2);
+    ALOGI("%s", reinterpret_cast<const char *>(result));
 }
 
 extern "C"

@@ -3,6 +3,9 @@ package com.jack.learn.juc
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.util.Pools.SimplePool
+import com.jack.learn.aidl.Person
+import com.jack.learn.click
 import com.jack.learn.databinding.ActivityConcurrentBinding
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.CyclicBarrier
@@ -13,6 +16,7 @@ import java.util.concurrent.SynchronousQueue
 import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.locks.ReentrantLock
 
 
 /**
@@ -24,42 +28,30 @@ class ConcurrentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val viewBinding = ActivityConcurrentBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-//        testSemaphore()
-//        testCountDownLatch()
-//        testCyclicBarrier()
-        testThreadPool()
-    }
-
-    private fun testThreadPool() {
-        val threadPoolExecutor = ThreadPoolExecutor(2,2,60,TimeUnit.SECONDS,SynchronousQueue(),
-            Executors.defaultThreadFactory(), ThreadPoolExecutor.CallerRunsPolicy())
-        threadPoolExecutor.allowCoreThreadTimeOut(true) // 核心线程
-        threadPoolExecutor.execute { }
-    }
-
-    //可以⽤来控制同时访问特定资源的线程数量
-    private fun testSemaphore() {
-        val exec = Executors.newCachedThreadPool()
-        val phore = Semaphore(3)
-        for (i in 0..4) {
-            val task = Runnable {
-                try {
-                    // 获取许可
-                    phore.acquire()
-                    Log.d("wangjie","获得许可: $i")
-                    // 休眠随机秒(表示正在执行操作)
-                    TimeUnit.SECONDS.sleep((Math.random()*10+1).toLong())
-                    // 访问完后，释放许可
-                    phore.release()
-                    // availablePermits()指还剩多少个许可
-                    Log.d("wangjie","当前还有多少个许可${phore.availablePermits()}")
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        viewBinding.apply {
+            button1.click {
+                testReentrantLock()
             }
-            exec.execute(task)
+            button2.click {
+                testCountDownLatch()
+            }
+            button3.click {
+                testCyclicBarrier()
+            }
+            button4.click {
+                testSemaphore()
+            }
+            button5.click {
+                testThreadPool()
+            }
         }
-        exec.shutdown()
+        Thread.activeCount() // 监控线程数量
+    }
+
+    private fun testReentrantLock() {
+        val lock = ReentrantLock(true)
+        lock.lock()
+        lock.unlock()
     }
 
     // 启动多个线程并发执行任务，等待所有线程执行完毕后进行结果汇总
@@ -116,5 +108,37 @@ class ConcurrentActivity : AppCompatActivity() {
             }
         }
         service.shutdown()
+    }
+
+    //可以⽤来控制同时访问特定资源的线程数量
+    private fun testSemaphore() {
+        val exec = Executors.newCachedThreadPool()
+        val phore = Semaphore(3)
+        for (i in 0..4) {
+            val task = Runnable {
+                try {
+                    // 获取许可
+                    phore.acquire()
+                    Log.d("wangjie","获得许可: $i")
+                    // 休眠随机秒(表示正在执行操作)
+                    TimeUnit.SECONDS.sleep((Math.random()*10+1).toLong())
+                    // 访问完后，释放许可
+                    phore.release()
+                    // availablePermits()指还剩多少个许可
+                    Log.d("wangjie","当前还有多少个许可${phore.availablePermits()}")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+            exec.execute(task)
+        }
+        exec.shutdown()
+    }
+
+    private fun testThreadPool() {
+        val threadPoolExecutor = ThreadPoolExecutor(2,2,60,TimeUnit.SECONDS,SynchronousQueue(),
+            Executors.defaultThreadFactory(), ThreadPoolExecutor.CallerRunsPolicy())
+        threadPoolExecutor.allowCoreThreadTimeOut(true) // 核心线程
+        threadPoolExecutor.execute { }
     }
 }

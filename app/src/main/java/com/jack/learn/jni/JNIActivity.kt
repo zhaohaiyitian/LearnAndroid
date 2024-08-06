@@ -44,10 +44,12 @@ class JNIActivity : AppCompatActivity() {
 
     //静态注入
     external fun stringFromJNI(): String // C函数
-    external fun callAddMethod(number1: Int,number2: Int): Int
+    external fun callAddMethod(number1: Int,number2: Int):Unit
     external fun changeAge()
 
+    // 被c调用的方法
     fun add(number1: Int,number2: Int): Int {
+        Log.d("wangjie","被C调用了")
         return number1+number2
     }
 //

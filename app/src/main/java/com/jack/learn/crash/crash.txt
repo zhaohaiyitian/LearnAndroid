@@ -1,0 +1,22 @@
+
+
+
+RuntimeInit.main()
+Thread.setDefaultUncaughtExceptionHandler(new KillApplicationHandler(loggingHandler));
+  Process.killProcess(Process.myPid());
+  System.exit(10);
+系统的退出，不是由异常引发的退出，而是由handler主动杀死进程
+
+
+
+native_crash
+SystemServer--startOtherServices--mActivityManagerService.startObservingNativeCrashes()--NativeCrashListener
+
+
+data/system/dropbox目录
+不管是java crash还是native_crash还是anr都会在这里记录 通过eventType区分
+
+crash优化
+信息采集？
+如何介入？
+进行拦截处理 在具体进程被杀之前 进行数据的处理和上传

@@ -8,17 +8,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.gson.GsonBuilder
 import com.jack.learn.R
 import com.jack.learn.databinding.ActivityThirdLibBinding
+import com.jack.learn.thirdlib.gson.UserTypeAdapter
 import com.jack.learn.thirdlib.okhttp.TimeEventListener
 import com.jack.learn.thirdlib.okhttp.TimeInterceptor
-import okhttp3.Authenticator
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import okhttp3.Route
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttClient
@@ -35,6 +35,15 @@ class ThirdLibActivity : AppCompatActivity() {
         }
 //        testSP()
         testOkHttp()
+    }
+
+    private fun testGson() {
+        val gson = GsonBuilder().registerTypeAdapter(UserInfo::class.java,UserTypeAdapter()).create()
+        val str = gson.toJson("")
+        val obj = gson.fromJson("",String::class.java)
+
+
+
     }
 
     private fun testGlide(imageView: ImageView) {
