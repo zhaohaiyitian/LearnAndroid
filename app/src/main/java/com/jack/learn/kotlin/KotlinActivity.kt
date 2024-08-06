@@ -14,14 +14,21 @@ import com.jack.learn.jetpack.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
+import java.lang.NullPointerException
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadFactory
 
@@ -55,9 +62,68 @@ class KotlinActivity : AppCompatActivity() {
             MainViewModel::class.java)
         viewBinding.apply {
             button.click {
+//                lifecycleScope.launch {
+//                    mViewModel.timeFlow.collect {
+//                        textView.text = it.toString()
+//                    }
+//                }
+
+
+
                 lifecycleScope.launch {
-                    mViewModel.timeFlow.collect {
-                        textView.text = it.toString()
+                    val job1 = launch {
+                        delay(1000)
+                        Log.d("wangjie","job1")
+                    }
+                    launch(SupervisorJob(coroutineContext[Job])) {
+                        val supervisorJob1 = launch {
+                            delay(1000)
+                            throw NullPointerException()
+                        }
+                        val supervisorJob2 = launch {
+                            delay(1000)
+                            Log.d("wangjie","supervisorJob2")
+                        }
+                    }
+                }
+
+                lifecycleScope.launch {
+                    try {
+                        coroutineScope {
+                            val job1 = launch {
+                                delay(2000)
+                                // 如果抛出异常 ， job1 停止执行 ， job2 也会被取消，停止执行
+                                throw NullPointerException()
+                            }
+
+                            val job2 = launch {
+                                delay(2000)
+                                println("println coroutineScope job 2")
+                            }
+                            // 如果执行 cancel ,job 1 ， job 2 均取消
+                            // cancel()
+                        }
+                    } catch (e: Throwable) {
+                        // ignore
+                    }
+
+                    try {
+                        supervisorScope {
+                            val job1 = launch {
+                                delay(2000)
+                                // 如果抛出异常 ， job1 停止执行 ， job2 继续执行
+                                throw NullPointerException()
+                            }
+
+                            val job2 = launch {
+                                delay(2000)
+                                println("println supervisorScope job 2")
+                            }
+                            // 如果执行 cancel ,job 1 ， job 2 均取消
+                            // cancel()
+                        }
+                    } catch (e: Throwable) {
+                        // ignore
                     }
                 }
             }
@@ -91,8 +157,11 @@ class KotlinActivity : AppCompatActivity() {
             }
             Log.d("wangjie", "目标线程：" + Thread.currentThread().name)
 
-            val asyncDeffed = async { }
-            val result = asyncDeffed.await()
+            val asyncDeffed1 = async { }
+            val asyncDeffed2 = async { }
+            val asyncDeffed3 = async { }
+            val asyncDeffed4 = async { }
+            val result = asyncDeffed1.await()
         }
         myDispatcher.close()
         job.cancel() // 协程被取消时会抛出 CancellationException
