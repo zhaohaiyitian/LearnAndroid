@@ -1,14 +1,17 @@
 package com.jack.learn
 
+import android.Manifest
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Debug
+import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.jack.learn.apm.Monitor
 import com.jack.learn.database.AppDataBase
 import com.jack.skin_core.SkinManager
 import com.kwai.koom.base.DefaultInitTask
@@ -16,7 +19,7 @@ import com.tencent.mmkv.MMKV
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
-import kotlin.math.max
+
 
 /**
  *
@@ -39,11 +42,12 @@ class NBApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         // 方法耗时统计
-        Debug.startMethodTracingSampling("",20000,100)
-        Debug.startMethodTracing("wangjie")
+//        Debug.startMethodTracingSampling("",20000,100)
+//        Debug.startMethodTracing("wangjie")
 
         SkinManager.getInstance().init(this)
-        SkinManager.getInstance().loadSkinApk("")
+        SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
+
 
         MMKV.initialize(this)
 //        Log.d("wangjie",rootDir)
@@ -62,7 +66,7 @@ class NBApplication: Application() {
         flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
         FlutterEngineCache.getInstance().put(CACHED_ENGINE_ID,flutterEngine)
         initClearMemory()
-        Debug.stopMethodTracing()
+//        Debug.stopMethodTracing()
     }
 
     /**

@@ -23,6 +23,7 @@ public class SkinFactory implements LayoutInflater.Factory2 {
     public AppCompatDelegate delegate;
     public String[] prefixList = {
             "android.widget.",
+            "android.widget.",
             "android.view.",
             "android.webkit."
     };
@@ -50,7 +51,7 @@ public class SkinFactory implements LayoutInflater.Factory2 {
                 onCreateView(name, context, attrs);
             } else {
                 for (String s : prefixList) {
-                    String className = s+name;
+                    String className = s+name;  // s+name
                     currentView = onCreateView(className,context,attrs);
                     if (currentView != null) {
                         break;

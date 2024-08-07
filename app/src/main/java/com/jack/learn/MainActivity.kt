@@ -1,11 +1,17 @@
 package com.jack.learn
 
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
 import com.jack.learn.animator.AnimatorActivity
 import com.jack.learn.apm.APMActivity
@@ -39,70 +45,76 @@ import io.flutter.embedding.engine.FlutterEngineCache
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        layoutInflater.factory = SkinFactory(delegate)
+        val factory = SkinFactory(delegate)
+        layoutInflater.factory2 = factory
         super.onCreate(savedInstanceState)
-        val viewBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(viewBinding.root)
+        setContentView(R.layout.activity_main)
+        // viewBinding 换肤有问题 待解决
+//        val viewBinding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(viewBinding.root)
+
+        factory.apply() // 进行换肤操作
+
         initKOOM()
-        viewBinding.apply {
-            jni.click {
-//                thread {
-//                    val p1 = Runtime.getRuntime().exec("ping -c 1 -w 100 www.baidu.com")
-//                    val status = p1.waitFor()
-//                    Log.d("wangjie","$status")
-//                }
-                startActivity(Intent(this@MainActivity,JNIActivity::class.java))
-            }
-            jetpack.click {
-                startActivity(Intent(this@MainActivity,JetPackActivity::class.java))
-            }
-            btnKotlin.click {
-                startActivity(Intent(this@MainActivity,KotlinActivity::class.java))
-            }
-            pattern.click {
-                startActivity(Intent(this@MainActivity,DesignPatternActivity::class.java))
-            }
-            scroll.click {
-                startActivity(Intent(this@MainActivity, NestedScrollViewActivity::class.java))
-            }
-            apm.click {
-                startActivity(Intent(this@MainActivity,APMActivity::class.java))
-            }
-            viewPager.click {
-                startActivity(Intent(this@MainActivity,ViewPagerActivity::class.java))
-            }
-            thirdLib.click {
-                startActivity(Intent(this@MainActivity, ThirdLibActivity::class.java))
-            }
-            cache.click {
-                startActivity(Intent(this@MainActivity, RecyclerCacheActivity::class.java))
-            }
-            webView.click {
-                startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
-            }
-            customView.click {
-                startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
-            }
-            flutter.click {
-                FlutterAppActivity.start(this@MainActivity,"111")
-//                startActivity(FlutterActivity.withNewEngine().initialRoute("/").build(this@MainActivity))
-//                startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
-            }
-            concurrent.click {
-                startActivity(Intent(this@MainActivity, ConcurrentActivity::class.java))
-            }
-            dataBase.click {
-                startActivity(Intent(this@MainActivity, DataBaseActivity::class.java))
-            }
-            animator.click {
-                startActivity(Intent(this@MainActivity, AnimatorActivity::class.java))
-            }
-            dsl.click {
-                startActivity(Intent(this@MainActivity, DSLActivity::class.java))
-            }
-            viewStub.inflate()
-            showFlutterView(viewBinding.flFlutter)
-        }
+//        viewBinding.apply {
+//            jni.click {
+////                thread {
+////                    val p1 = Runtime.getRuntime().exec("ping -c 1 -w 100 www.baidu.com")
+////                    val status = p1.waitFor()
+////                    Log.d("wangjie","$status")
+////                }
+//                startActivity(Intent(this@MainActivity,JNIActivity::class.java))
+//            }
+//            jetpack.click {
+//                startActivity(Intent(this@MainActivity,JetPackActivity::class.java))
+//            }
+//            btnKotlin.click {
+//                startActivity(Intent(this@MainActivity,KotlinActivity::class.java))
+//            }
+//            pattern.click {
+//                startActivity(Intent(this@MainActivity,DesignPatternActivity::class.java))
+//            }
+//            scroll.click {
+//                startActivity(Intent(this@MainActivity, NestedScrollViewActivity::class.java))
+//            }
+//            apm.click {
+//                startActivity(Intent(this@MainActivity,APMActivity::class.java))
+//            }
+//            viewPager.click {
+//                startActivity(Intent(this@MainActivity,ViewPagerActivity::class.java))
+//            }
+//            thirdLib.click {
+//                startActivity(Intent(this@MainActivity, ThirdLibActivity::class.java))
+//            }
+//            cache.click {
+//                startActivity(Intent(this@MainActivity, RecyclerCacheActivity::class.java))
+//            }
+//            webView.click {
+//                startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
+//            }
+//            customView.click {
+//                startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
+//            }
+//            flutter.click {
+//                FlutterAppActivity.start(this@MainActivity,"111")
+////                startActivity(FlutterActivity.withNewEngine().initialRoute("/").build(this@MainActivity))
+////                startActivity(FlutterActivity.createDefaultIntent(this@MainActivity))
+//            }
+//            concurrent.click {
+//                startActivity(Intent(this@MainActivity, ConcurrentActivity::class.java))
+//            }
+//            dataBase.click {
+//                startActivity(Intent(this@MainActivity, DataBaseActivity::class.java))
+//            }
+//            animator.click {
+//                startActivity(Intent(this@MainActivity, AnimatorActivity::class.java))
+//            }
+//            dsl.click {
+//                startActivity(Intent(this@MainActivity, DSLActivity::class.java))
+//            }
+////            viewStub.inflate()
+//            showFlutterView(viewBinding.flFlutter)
+//        }
     }
 
     private fun showFlutterView(layout: FrameLayout) {

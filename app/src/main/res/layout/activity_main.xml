@@ -5,7 +5,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/cardview_light_background"
+    android:background="@drawable/bg"
     android:padding="16dp"
     app:is_skin="true">
 
@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:text="jni"
                 android:textSize="17dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/colorPrimary"
+                app:is_skin="true"/>
 
             <Button
                 android:id="@+id/jetpack"
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="jetpack"
                 android:textSize="17dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
 
             <Button
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="动态代理"
                 android:textSize="17dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
             <Button
                 android:id="@+id/scroll"
                 android:layout_width="match_parent"
@@ -148,13 +149,13 @@
 
                   viewstub一旦被inflated就会被实际的布局替换
                   -->
-            <ViewStub
-                android:id="@+id/viewStub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inflatedId="@+id/stub"
-                android:layout="@layout/stub_layout"
-                tools:visibility="visible"/>
+<!--            <ViewStub-->
+<!--                android:id="@+id/viewStub"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inflatedId="@+id/stub"-->
+<!--                android:layout="@layout/stub_layout"-->
+<!--                tools:visibility="visible"/>-->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

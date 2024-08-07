@@ -77,7 +77,7 @@ public class SkinManager {
         if (identifier == 0) {
             return resId;
         }
-        return mResources.getColor(resId);
+        return mResources.getColor(identifier);
     }
 
 
