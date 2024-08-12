@@ -90,9 +90,9 @@ public class SkinManager {
             return ContextCompat.getDrawable(mContext,id);
         }
         //获取到资源id的类型
-        String resourceTypeName = mContext.getResources().getResourceTypeName(id);
+        String resourceTypeName = mContext.getResources().getResourceTypeName(id); // drawable
         //获取到的就是资源id的名字
-        String resourceEntryName = mContext.getResources().getResourceEntryName(id);
+        String resourceEntryName = mContext.getResources().getResourceEntryName(id); // bg
         //就是colorAccent这个资源在外置APK中的id
         int identifier = mResources.getIdentifier(resourceEntryName, resourceTypeName, mSkinPackageName);
         if(identifier == 0){

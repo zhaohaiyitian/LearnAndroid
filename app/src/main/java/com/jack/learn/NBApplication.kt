@@ -12,6 +12,7 @@ import android.os.HandlerThread
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.jack.learn.architecture.LoadUtil
 import com.jack.learn.database.AppDataBase
 import com.jack.skin_core.SkinManager
 import com.kwai.koom.base.DefaultInitTask
@@ -45,8 +46,11 @@ class NBApplication: Application() {
 //        Debug.startMethodTracingSampling("",20000,100)
 //        Debug.startMethodTracing("wangjie")
 
+        //初始化换肤框架
         SkinManager.getInstance().init(this)
         SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
+
+        LoadUtil.loadClass(this)
 
 
         MMKV.initialize(this)
