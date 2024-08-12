@@ -51,7 +51,7 @@ public class SkinManager {
             PackageInfo packageArchiveInfo = packageManager.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
             mSkinPackageName = packageArchiveInfo.packageName;
 
-            AssetManager assetManager = AssetManager.class.newInstance();
+            AssetManager assetManager = AssetManager.class.newInstance(); // 专门加载插件资源 减少冲突
             Method method = assetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
             method.setAccessible(true);
             method.invoke(assetManager,path);

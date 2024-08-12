@@ -2,6 +2,7 @@ package com.jack.learn
 
 import android.Manifest
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -62,6 +63,10 @@ class MainActivity : AppCompatActivity() {
                 val newInstance = clazz.newInstance()
                 val print = clazz.getMethod("print")
                 print.invoke(newInstance)
+
+                val intent = Intent()
+                intent.component = ComponentName("com.jack.pluggable","com.jack.pluggable.MainActivity")
+                startActivity(intent)
             }
             jni.click {
 //                thread {

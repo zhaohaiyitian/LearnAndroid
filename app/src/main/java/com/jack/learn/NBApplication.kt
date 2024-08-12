@@ -1,18 +1,16 @@
 package com.jack.learn
 
-import android.Manifest
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.jack.learn.architecture.LoadUtil
+import com.bumptech.glide.load.engine.Resource
+import com.jack.learn.architecture.plugin.HookUtil
+import com.jack.learn.architecture.plugin.LoadUtil
 import com.jack.learn.database.AppDataBase
 import com.jack.skin_core.SkinManager
 import com.kwai.koom.base.DefaultInitTask
@@ -29,6 +27,7 @@ import io.flutter.embedding.engine.dart.DartExecutor
 class NBApplication: Application() {
 
     private var handler:Handler? = null
+//    private var mResources:Resources? = null
     val database: AppDataBase by lazy { AppDataBase.getInstance(applicationContext) }
     companion object {
         const val CACHED_ENGINE_ID = "MY_CACHED_ENGINE_ID"
@@ -51,6 +50,9 @@ class NBApplication: Application() {
         SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
 
         LoadUtil.loadClass(this)
+//        mResources = HookUtil.loadResource(this,getExternalFilesDir("").toString()+"/pluggable-debug.apk")
+        HookUtil.hookAMS()
+        HookUtil.hookHandler()
 
 
         MMKV.initialize(this)
@@ -72,6 +74,13 @@ class NBApplication: Application() {
         initClearMemory()
 //        Debug.stopMethodTracing()
     }
+
+//    override fun getResources(): Resources {
+//        if (mResources == null) {
+//            return super.getResources()
+//        }
+//        return mResources!!
+//    }
 
     /**
      * 开启低内存检测，如果低内存了 作出相应的操作

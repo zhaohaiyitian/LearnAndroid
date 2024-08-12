@@ -1,4 +1,4 @@
-package com.jack.learn.architecture;
+package com.jack.learn.architecture.plugin;
 
 import android.content.Context;
 
