@@ -49,10 +49,11 @@ class NBApplication: Application() {
         SkinManager.getInstance().init(this)
         SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
 
-        LoadUtil.loadClass(this)
-//        mResources = HookUtil.loadResource(this,getExternalFilesDir("").toString()+"/pluggable-debug.apk")
-        HookUtil.hookAMS()
-        HookUtil.hookHandler()
+         // 初始化插件化
+//        LoadUtil.loadClass(this)
+////        mResources = HookUtil.loadResource(this,getExternalFilesDir("").toString()+"/pluggable-debug.apk")
+//        HookUtil.hookAMS()
+//        HookUtil.hookHandler()
 
 
         MMKV.initialize(this)

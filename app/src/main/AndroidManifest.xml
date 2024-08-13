@@ -22,7 +22,7 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".architecture.plugin.PluginActivity"
+            android:name=".architecture.plugin.PluginContainerActivity"
             android:exported="false" />
         <activity
             android:name=".view.pager.PagerVideoActivity"

@@ -1,21 +1,16 @@
 package com.jack.learn
 
-import android.Manifest
-import android.app.Activity
-import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Environment
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
 import com.jack.learn.animator.AnimatorActivity
 import com.jack.learn.apm.APMActivity
+import com.jack.learn.architecture.plugin.PluginContainerActivity
+import com.jack.learn.architecture.plugin.PluginManagerImpl
 import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
@@ -32,8 +27,6 @@ import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
 import com.jack.learn.webview.WebViewActivity
-import com.jack.skin_core.SkinFactory
-import com.jack.skin_core.SkinManager
 import com.kwai.koom.javaoom.monitor.OOMMonitor
 import io.flutter.embedding.android.FlutterView
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -59,14 +52,17 @@ class MainActivity : AppCompatActivity() {
         initKOOM()
         viewBinding.apply {
             plugin.click {
-                val clazz = Class.forName("com.jack.pluggable.Test")
-                val newInstance = clazz.newInstance()
-                val print = clazz.getMethod("print")
-                print.invoke(newInstance)
-
-                val intent = Intent()
-                intent.component = ComponentName("com.jack.pluggable","com.jack.pluggable.MainActivity")
-                startActivity(intent)
+//                val clazz = Class.forName("com.jack.pluggable.Test")
+//                val newInstance = clazz.newInstance()
+//                val print = clazz.getMethod("print")
+//                print.invoke(newInstance)
+//
+//                val intent = Intent()
+//                intent.component = ComponentName("com.jack.pluggable","com.jack.pluggable.MainActivity")
+//                startActivity(intent)
+                PluginManagerImpl.getInstance().setContext(this@MainActivity)
+                PluginManagerImpl.getInstance().loadPath()
+                startActivity(Intent(this@MainActivity,PluginContainerActivity::class.java))
             }
             jni.click {
 //                thread {

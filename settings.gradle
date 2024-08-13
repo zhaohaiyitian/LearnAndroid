@@ -17,3 +17,4 @@ include ':flutter_module'
 project(':flutter_module').projectDir = new File('../flutter_module')
 include ':skin_core'
 include ':pluggable'
+include ':shadowcore'

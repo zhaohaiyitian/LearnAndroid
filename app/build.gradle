@@ -101,6 +101,7 @@ dependencies {
 
     implementation project(':flutter')
     implementation project(':skin_core')
+    implementation project(path: ':shadowcore')
 
     // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
