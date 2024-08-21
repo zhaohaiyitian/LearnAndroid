@@ -10,7 +10,7 @@ import com.jack.learn.aidl.server.IPersonManager;
 import java.util.List;
 
 /**
- *Binder机制的发送端
+ * Binder机制的发送端
  * 代理对象实例就是client最终拿到的代理服务，通过代理和server进行通信
  */
 public class CustomProxy implements IPersonManager {
@@ -35,8 +35,8 @@ public class CustomProxy implements IPersonManager {
                 data.writeInt(0);
             }
             // flag 0 同步传输  IBinder.FLAG_ONEWAY 异步传输
-            mRemote.transact(BinderStub.ADD_PERSON,data,reply,0);
-            // 在发送数据后 Client进程的该线程会暂时被挂起
+            mRemote.transact(BinderStub.ADD_PERSON,data,reply,0);// 如果是同步传输 这里会挂起
+            //如果是同步传输 在发送数据后 Client进程的该线程会暂时被挂起
             reply.readException();
         } catch (Exception e) {
             e.printStackTrace();

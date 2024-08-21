@@ -16,4 +16,13 @@ Binder基于Client-Server架构，其中Server端发布一组接口，Client端�
 
 传输数据的限制 1m-8k 这是同步调用的方式  异步的方式是（1m-8k）/2
 
-在回答其他进程通信机制 socket 共享内存 管道 文件
+在回答其他进程通信机制 socket 共享内存 管道 文件 信号量
+
+Binder是进程间通信机制
+驱动层面：Binder是一个虚拟的物理设备驱动
+应用层面：Binder是一个能进行通信的java类
+
+
+
+AIDL 接口定义语言 用于跨进程通信 AIDL的核心是Binder
+简化了Binder的调用过程，Binder通信有一套规则，AIDl根据规则生成了一套代码
