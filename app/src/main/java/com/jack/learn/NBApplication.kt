@@ -114,6 +114,7 @@ class NBApplication: Application() {
     }
 
     private fun lifecycle() {
+        // 注册Activity的生命周期回调
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 

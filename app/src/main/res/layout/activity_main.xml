@@ -18,6 +18,14 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/hotFix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="热修复"
+                android:textSize="17dp"
+                android:textColor="@color/black" />
+
+            <Button
                 android:id="@+id/plugin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

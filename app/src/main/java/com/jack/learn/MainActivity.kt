@@ -2,6 +2,7 @@ package com.jack.learn
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -9,12 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jack.learn.NBApplication.Companion.CACHED_ENGINE_ID
 import com.jack.learn.animator.AnimatorActivity
 import com.jack.learn.apm.APMActivity
+import com.jack.learn.apm.startup.Utils
 import com.jack.learn.architecture.plugin.PluginContainerActivity
 import com.jack.learn.architecture.plugin.PluginManagerImpl
 import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.flutter.FlutterAppActivity
+import com.jack.learn.hotfix.HotFixActivity
 import com.jack.learn.jetpack.JetPackActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.juc.ConcurrentActivity
@@ -46,11 +49,18 @@ class MainActivity : AppCompatActivity() {
         // viewBinding 换肤有问题 待解决
         val viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        Log.d("wangjie", "渲染线程Id: "+Utils.getRenderThreadTid())
+        Log.d("wangjie", "核数: "+Utils.getNumberOfCPUCores())
+        Log.d("wangjie", "大核: "+Utils.getMaxFreqCPU())
+
 
 //        factory.apply() // 进行换肤操作
 
         initKOOM()
         viewBinding.apply {
+            hotFix.click {
+                startActivity(Intent(this@MainActivity,HotFixActivity::class.java))
+            }
             plugin.click {
 //                val clazz = Class.forName("com.jack.pluggable.Test")
 //                val newInstance = clazz.newInstance()

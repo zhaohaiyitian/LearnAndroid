@@ -2,6 +2,8 @@
 
 
 
+热修复 需要考虑自己实际项目业务背景
+
 修复步骤：
 1.获取当前应用的classloader BaseDexClassLoader
 2.反射获取到他的DexPathList属性对象pathList
