@@ -4,9 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.CustomViewActivity">
 
 
+
+
+
+
+    <LinearLayout
+        android:id="@+id/llLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+        <EditText
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:textSize="30dp"
+            android:text="点击事件"/>
+    </LinearLayout>
 
     <com.jack.learn.view.ScalableImageView
         android:layout_width="wrap_content"
@@ -19,5 +37,7 @@
         android:id="@+id/customView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    《
 
 </LinearLayout>

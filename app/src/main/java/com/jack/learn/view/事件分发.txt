@@ -45,6 +45,8 @@ ViewRootImpl
 
 当一个View消费了DOWN事件之后，后续的事件系统默认都会给他消费
 
+给View和ViewGroup同时设置clickListener事件 为什么view的执行viewGroup的不执行？？？？？？
+
 
 事件冲突解决方案
 内部拦截法：是指父容器不拦截任何事件，所有的事件都传递给子元素，如果子元素需要此事件就直接消耗掉，否则就交与父容器进行处理
