@@ -21,13 +21,13 @@ class CustomViewActivity : AppCompatActivity() {
 //            animator.interpolator = FastOutSlowInInterpolator()
 //            animator.start()
 
-            llLayout.setOnClickListener {
-                Log.d("wangjie", "ViewGroup")
-            }
-            button.setOnClickListener {
-                // (it.parent as LinearLayout).performClick() 强制让ViewGroup执行click事件
-                Log.d("wangjie", "View")
-            }
+//            llLayout.setOnClickListener {
+//                Log.d("wangjie", "ViewGroup")
+//            }
+//            button.setOnClickListener {
+//                // (it.parent as LinearLayout).performClick() 强制让ViewGroup执行click事件
+//                Log.d("wangjie", "View")
+//            }
         }
     }
 }

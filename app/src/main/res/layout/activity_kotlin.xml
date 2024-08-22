@@ -26,7 +26,7 @@
 
 
 
-    <com.jack.learn.view.CustomView
+    <com.jack.learn.view.view.CustomView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

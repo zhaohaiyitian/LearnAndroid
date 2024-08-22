@@ -1,4 +1,4 @@
-package com.jack.learn.view
+package com.jack.learn.view.view
 
 import android.content.Context
 import android.util.AttributeSet

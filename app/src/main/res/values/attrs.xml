@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JackView">
+        <attr name="circle_color" format="integer"/>
+        <attr name="str" format="string"/>
+    </declare-styleable>
+</resources>

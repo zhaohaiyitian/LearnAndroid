@@ -4,40 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".view.CustomViewActivity">
 
 
 
-
-
-
-    <LinearLayout
-        android:id="@+id/llLayout"
+    <com.jack.learn.view.view.JackViewGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
-        <EditText
-            android:id="@+id/button"
+        android:paddingLeft="20dp"
+        android:background="@color/colorAccent">
+        <com.jack.learn.view.view.JackView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/purple_500"
-            android:textSize="30dp"
-            android:text="点击事件"/>
-    </LinearLayout>
+            android:padding="10dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/colorPrimary"
+            app:str="马牛"/>
+        <com.jack.learn.view.view.JackView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            app:str="马牛马牛马牛马牛马牛"/>
+        <com.jack.learn.view.view.JackView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="20dp"
+            app:str="马牛"/>
+    </com.jack.learn.view.view.JackViewGroup>
 
-    <com.jack.learn.view.ScalableImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+
+
+<!--    <com.jack.learn.view.view.FlowLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/llLayout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/colorPrimary">-->
+<!--        <EditText-->
+<!--            android:id="@+id/button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="30dp"-->
+<!--            android:text="点击事件"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <com.jack.learn.view.view.ScalableImageView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
 
 
 
 
-    <com.jack.learn.view.AnimatedCircleProgressBar
-        android:id="@+id/customView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<!--    <com.jack.learn.view.view.AnimatedCircleProgressBar-->
+<!--        android:id="@+id/customView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"/>-->
 
-    《
 
 </LinearLayout>

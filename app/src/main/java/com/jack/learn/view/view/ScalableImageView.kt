@@ -1,4 +1,4 @@
-package com.jack.learn.view
+package com.jack.learn.view.view
 
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.OverScroller
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
+import com.jack.learn.view.dp
+import com.jack.learn.view.getAvatar
 import kotlin.math.max
 import kotlin.math.min
-
 private val IMAGE_SIZE = 300.dp.toInt()
 private const val EXTRA_SCALE_FACTOR = 1.5f
-
 class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, attrs) {
   private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
   private val bitmap = getAvatar(resources, IMAGE_SIZE)
@@ -88,10 +88,10 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
     }
 
     override fun onFling(
-      downEvent: MotionEvent?,
-      currentEvent: MotionEvent?,
-      velocityX: Float,
-      velocityY: Float
+        downEvent: MotionEvent?,
+        currentEvent: MotionEvent?,
+        velocityX: Float,
+        velocityY: Float
     ): Boolean {
       if (big) {
         scroller.fling(offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
@@ -100,16 +100,16 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
           (- (bitmap.height * bigScale - height) / 2).toInt(),
           ((bitmap.height * bigScale - height) / 2).toInt()
         )
-        ViewCompat.postOnAnimation(this@ScalableImageView, henFlingRunner)
+          ViewCompat.postOnAnimation(this@ScalableImageView, henFlingRunner)
       }
       return false
     }
 
     override fun onScroll(
-      downEvent: MotionEvent?,
-      currentEvent: MotionEvent?,
-      distanceX: Float,
-      distanceY: Float
+        downEvent: MotionEvent?,
+        currentEvent: MotionEvent?,
+        distanceX: Float,
+        distanceY: Float
     ): Boolean {
       if (big) {
         offsetX -= distanceX
@@ -162,7 +162,7 @@ class ScalableImageView(context: Context, attrs: AttributeSet) : View(context, a
         offsetX = scroller.currX.toFloat()
         offsetY = scroller.currY.toFloat()
         invalidate()
-        ViewCompat.postOnAnimation(this@ScalableImageView, this)
+          ViewCompat.postOnAnimation(this@ScalableImageView, this)
       }
     }
   }

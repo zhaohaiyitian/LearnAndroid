@@ -20,7 +20,7 @@
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"/>
-        <com.jack.learn.view.CustomView
+        <com.jack.learn.view.view.CustomView
             android:id="@+id/customView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.jack.learn.R
-import com.jack.learn.view.CustomView
+import com.jack.learn.view.view.CustomView
 
 /**
  * Activity.attach()
