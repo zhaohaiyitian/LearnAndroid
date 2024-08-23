@@ -14,17 +14,19 @@ class RecyclerCacheActivity : AppCompatActivity() {
         val viewBinding = ActivityRecyclerCacheBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         viewBinding.apply {
-            recyclerView.layoutManager = LinearLayoutManager(this@RecyclerCacheActivity, LinearLayoutManager.VERTICAL,false)
+            val linearLayoutManager = LinearLayoutManager(this@RecyclerCacheActivity, LinearLayoutManager.VERTICAL,false)
+            recyclerView.layoutManager = linearLayoutManager
             recyclerView.addItemDecoration(DividerItemDecoration(this@RecyclerCacheActivity,DividerItemDecoration.VERTICAL))
             initData()
-            val adapter = MyCacheAdapter(mDatas)
-            recyclerView.adapter = adapter
+            val mAdapter = MyCacheAdapter(mDatas)
+            recyclerView.adapter = mAdapter
             // viewType类型为TYPE_SPECIAL时，设置四级缓存池RecyclerPool不存储对应类型的数据 因为需要开发者自行缓存
             recyclerView.recycledViewPool.setMaxRecycledViews(MyCacheAdapter.TYPE_SPECIAL,0)
             // 设置ViewCacheExtension缓存
             val cache = MyViewCacheExtension()
-            cache.setAdapter(adapter)
+            cache.setAdapter(mAdapter)
             recyclerView.setViewCacheExtension(cache)
+            recyclerView.setHasFixedSize(true)
         }
     }
 

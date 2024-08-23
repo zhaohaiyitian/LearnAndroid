@@ -85,4 +85,12 @@ class MyCacheAdapter(private val data: List<String>) :
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)
     }
+
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+    }
+
+    override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+    }
 }
