@@ -61,6 +61,9 @@ WindowManagerGlobal.updateViewLayout()
 VSYNC服务返回VSYNC信号是在FrameDisplayEventReceiver的onVsync方法中回调的
 
 
+requestLayout : onMeasure(),onLayout(), onDraw()
+invalidate() : onDraw()
+
 
 
 

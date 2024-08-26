@@ -23,10 +23,13 @@ IMS会对这个触摸信息进行处理，IMS通过WMS找到要分发的window�
 
 DecorView交给Activity处理，Activity直接交给PhoneWindow处理，PhoneWindow直接交给其内部的DecorView处理，
 而DecorView则直接调用父类ViewGroup的方法进行分发，ViewGroup则会按照具体的逻辑分发到整个控件树中感兴趣的子控件。
+
+WindowInputEventReceiver ---> ViewPostImeInputStage
+
 ViewRootImpl
-  -->mView.dispatchPointerEvent(event)
+  -->mView(DecorView).dispatchPointerEvent(event)
     View
-      -->dispatchPointerEvent(event)
+      -->dispatchPointerEvent(event)----dispatchTouchEvent(event)
         DecorView
         -->dispatchTouchEvent()
           Activity
@@ -39,9 +42,14 @@ ViewRootImpl
                 ViewGroup
                 -->dispatchTouchEvent()
 
+ActivityThread
+ -->handleResumeActivity()
+WindowManagerGlobal
+ -->addView() 在addView方法中创建ViewRootImpl 接着调用ViewRootImpl.setView()
 
 
 当一个child消费了一个DOWN事件之后，mFirstTouchTarget就不再为空
+mFirstTouchTarget赋值过程是在addTouchTarget方法中完成的
 
 当一个View消费了DOWN事件之后，后续的事件系统默认都会给他消费
 
