@@ -2,6 +2,7 @@ package com.jack.learn.apm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
@@ -16,6 +17,11 @@ class APMActivity : AppCompatActivity() {
                 setContentView(view)
             }
         })
-        val byte = ByteArray(360000*1024)
+        try {
+            val byte = ByteArray(360000*1024)
+        } catch (e:Exception) {
+            Log.d("wangjie",e.message.toString())
+            e.printStackTrace()
+        }
     }
 }

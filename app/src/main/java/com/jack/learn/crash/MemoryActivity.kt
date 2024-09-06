@@ -1,5 +1,6 @@
 package com.jack.learn.crash
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -50,6 +51,23 @@ class MemoryActivity : AppCompatActivity() {
                 // 执行业务逻辑
             }
         }
+    }
+
+    /**
+     * SharedPreferences是一种轻量级的数据存储方式，用于存储键值对形式的数据 不支持多进程
+     * 初始化：子线程使用JavaIO读取整个文件，进行XML解析，存入Map集合，对于SP的其他操作都需要等待初始化完成
+     *
+     * 全量更新（重新序列化，并覆盖文件实现更新）
+     * IO 用mmap优化
+     * dom解析  通过protobuf优化
+     */
+    private fun testSP() {
+        val sp = this.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        sp.getString("","")
+        val editor = sp.edit()
+        editor.putString("","")
+        editor.commit() // 同步提交 有返回值 阻塞调用线程 可能导致ANR
+        editor.apply() // 异步提交 无返回值
     }
 
 }

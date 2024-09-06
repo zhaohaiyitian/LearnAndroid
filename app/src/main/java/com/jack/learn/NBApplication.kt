@@ -41,6 +41,11 @@ class NBApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
+//        if (BuildConfig.DEBUG) {
+//            ARouter.openLog()
+//            ARouter.openDebug()
+//        }
+//        ARouter.init(this) // 初始化
         // 方法耗时统计
 //        Debug.startMethodTracingSampling("",20000,100)
 //        Debug.startMethodTracing("wangjie")
@@ -162,5 +167,10 @@ class NBApplication: Application() {
             override fun onActivityDestroyed(activity: Activity) {
             }
         })
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+//        ARouter.getInstance().destroy()//是释放资源的API。释放代码写在Application生命周期的onTerminate( )里。
     }
 }

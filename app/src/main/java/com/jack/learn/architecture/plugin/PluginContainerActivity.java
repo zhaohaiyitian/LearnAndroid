@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.jack.learn.R;
 import com.jack.shadowcore.ContextTheme;
 
+/**
+ * pluggable: 插件工程 生成apk 然后下发到app中
+ */
 public class PluginContainerActivity extends Activity {
 
     private String className;

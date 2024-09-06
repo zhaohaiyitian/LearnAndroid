@@ -166,13 +166,13 @@
 
                   viewstub一旦被inflated就会被实际的布局替换
                   -->
-<!--            <ViewStub-->
-<!--                android:id="@+id/viewStub"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inflatedId="@+id/stub"-->
-<!--                android:layout="@layout/stub_layout"-->
-<!--                tools:visibility="visible"/>-->
+            <ViewStub
+                android:id="@+id/viewStub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/stub"
+                android:layout="@layout/stub_layout"
+                tools:visibility="visible"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

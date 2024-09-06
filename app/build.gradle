@@ -29,6 +29,9 @@ android {
                 arguments = ["room.schemaLocation":
                                      "$projectDir/schemas".toString()]
             }
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
         }
     }
 
@@ -40,6 +43,14 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    sourceSets {
+        main.res.srcDirs = ['src/main/res',
+                            'src/main/res/layouts',
+                            'src/main/res/layouts/contact',
+                            'src/main/res/layouts/gesture',
+                            'src/main/res/layouts/traderpw',
+                            'src/main/res/layouts/bankcard']
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -120,7 +131,7 @@ dependencies {
     implementation 'androidx.asynclayoutinflater:asynclayoutinflater:1.0.0'
 
     // LeakCanary
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:3.0-alpha-1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:3.0-alpha-1'
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
@@ -147,4 +158,8 @@ dependencies {
 
     // gson
     implementation 'com.google.code.gson:gson:2.11.0'
+//
+//    // ARouter
+//    implementation 'com.alibaba:arouter-api:1.5.2'
+//    kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

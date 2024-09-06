@@ -1,0 +1,16 @@
+
+
+
+
+
+
+
+include
+merge
+
+ViewStub原理？
+ViewStub 在布局中是不可见的，主要用于在需要的时候才去加载一个布局资源，从而实现延迟加载，提高性能并减少内存占用。
+只有当通过调用ViewStub.inflate()或者ViewStub.setVisibility(View.VISIBLE)方法时，
+ViewStub 才会去加载指定的布局资源，并将其替换自身在布局中的位置
+ViewStub中通过LayoutInflater.inflate加载真正的布局
+最后通过addView添加布局资源

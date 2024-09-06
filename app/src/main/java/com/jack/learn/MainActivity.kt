@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
             dsl.click {
                 startActivity(Intent(this@MainActivity, DSLActivity::class.java))
             }
-//            viewStub.inflate()
+            val view = viewStub.inflate() // view：就是真正被添加的布局
             showFlutterView(viewBinding.flFlutter)
         }
     }

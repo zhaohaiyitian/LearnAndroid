@@ -21,3 +21,10 @@ ViewModel是存放在ViewModelStore中的Map数据结构中
 当Activity执行Destroy时会把ViewModelStore存放在ActivityClientRecord中
 当Activity重建时ActivityThread会把ActivityClientRecord传递到Activity的attach方法中
 最后会从ViewModelStore的Map中通过Key获取到销毁前的ViewModel
+
+面试问：ViewModel是如何创建出来的？
+ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+首先会根据key从ViewModelStore中去查找是否有对应的ViewModel 如果有就直接返回
+如果没有就通过Factory反射创建ViewModel然后存到ViewModelStore中，最后返回创建的ViewModel
+
+

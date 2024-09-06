@@ -17,11 +17,11 @@ abstract class BaseMVVMActivity<VM:BaseViewModel,VB:ViewBinding> : AppCompatActi
         super.onCreate(savedInstanceState)
 
 
-        // 拿到泛型
-        val superClass = javaClass.genericSuperclass as ParameterizedType
+        // 拿到泛型          //javaClass.genericSuperclass 当前对象超类的Type
+        val superClass = javaClass.genericSuperclass as ParameterizedType // ParameterizedType表示参数化的类型
 
-        // 初始化VM
-        val classVM = superClass.actualTypeArguments[0] as Class<VM>
+        // 初始化VM        把ViewModel的初始化放到了父类里进行
+        val classVM = superClass.actualTypeArguments[0] as Class<VM> // 返回此类型实际类型参数的Type对象数组
         mVM = ViewModelProvider(this).get(classVM)
 
 

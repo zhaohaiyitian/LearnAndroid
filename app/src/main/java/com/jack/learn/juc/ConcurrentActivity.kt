@@ -7,9 +7,14 @@ import androidx.core.util.Pools.SimplePool
 import com.jack.learn.aidl.Person
 import com.jack.learn.click
 import com.jack.learn.databinding.ActivityConcurrentBinding
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.CyclicBarrier
 import java.util.concurrent.Executors
+import java.util.concurrent.LinkedBlockingDeque
+import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.RejectedExecutionHandler
 import java.util.concurrent.Semaphore
 import java.util.concurrent.SynchronousQueue
@@ -42,10 +47,54 @@ class ConcurrentActivity : AppCompatActivity() {
                 testSemaphore()
             }
             button5.click {
-                testThreadPool()
+//                testThreadPool()
+                testQueue()
             }
         }
-        Thread.activeCount() // 监控线程数量
+//        Thread.activeCount() // 监控线程数量
+    }
+
+    private fun testCOW() {
+        val arrayList = CopyOnWriteArrayList<String>()
+        arrayList.add("上海")
+        arrayList.add("北京")
+        arrayList.get(0)
+        arrayList.remove("北京")
+        arrayList.isEmpty()
+
+        val arraySet = CopyOnWriteArraySet<String>()
+        arraySet.add("上海")
+        arraySet.add("北京")
+        arraySet.remove("北京")
+
+    }
+
+    private fun testQueue() {
+        val queue = ArrayBlockingQueue<String>(5) // 有界缓存区
+        queue.add("历史")
+        queue.add("地理")
+        queue.offer("地理") // 添加
+        queue.remove("历史")
+        queue.poll()
+        queue.peek()
+        queue.take()
+
+        val linkedQueue = LinkedBlockingQueue<String>(5) // 单向的阻塞队列 可以指定容量 如果未指定容量 则容量大小为LinkedBlockingQueue
+        linkedQueue.add("历史")
+        linkedQueue.add("地理")
+        linkedQueue.offer("地理")
+        linkedQueue.remove("历史")
+        linkedQueue.poll()
+
+        val deque = LinkedBlockingDeque<String>(5) // 双向的阻塞队列  可以在队列的头部和尾部进行插入和删除操作。
+        deque.addFirst("")
+        deque.addLast("")
+        deque.putLast("")
+        deque.putFirst("")
+        deque.pollFirst()
+        deque.pollLast()
+        deque.removeLast()
+        deque.removeFirst()
     }
 
     private fun testReentrantLock() {

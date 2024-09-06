@@ -7,10 +7,12 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.GsonBuilder
 import com.jack.learn.R
 import com.jack.learn.databinding.ActivityThirdLibBinding
+import com.jack.learn.thirdlib.glide.MyGlideUrl
 import com.jack.learn.thirdlib.gson.UserTypeAdapter
 import com.jack.learn.thirdlib.okhttp.TimeEventListener
 import com.jack.learn.thirdlib.okhttp.TimeInterceptor
@@ -19,9 +21,11 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttClient
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttMessage
 import java.io.IOException
 
@@ -35,6 +39,8 @@ class ThirdLibActivity : AppCompatActivity() {
         }
 //        testSP()
         testOkHttp()
+        val bundle = Bundle()
+        bundle.putString("","")
     }
 
     private fun testGson() {
@@ -46,14 +52,26 @@ class ThirdLibActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * override 可用于大图加载并指定目标大小
+     */
     private fun testGlide(imageView: ImageView) {
+
+        //加载缩略图
+        Glide.with(this).load("")
+            .thumbnail(12f) // 替换为缩略图的大小百分比
+            .into(imageView)
+
         val options = RequestOptions()
         Glide.with(this@ThirdLibActivity)
-            .load("https://pic.rmb.bdstatic.com/bjh/68e3f5534741633e722a4aee7cd086b16929.jpeg@h_1280")
+            .load(MyGlideUrl("https://pic.rmb.bdstatic.com/bjh/68e3f5534741633e722a4aee7cd086b16929.jpeg@h_1280"))
             .skipMemoryCache(true) // 禁用内存缓存功能
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .format(DecodeFormat.PREFER_ARGB_8888)
             .placeholder(R.mipmap.image)
+            .dontTransform() // 表示Glide在加载的过程中不进行图片变换
+            .transform(CenterCrop())
+            .override(5000,500) // override() 方法用于指定加载图片的目标尺寸,  使用 override() 方法并不会改变原始图片的尺寸，它只是在加载和显示过程中进行缩放
             .into(imageView)
 
         // Glide优化
@@ -125,8 +143,32 @@ class ThirdLibActivity : AppCompatActivity() {
      * QoS=0 最多发一次
      * QoS=1 最少发一次
      * QoS=2 保证收一次
+     *
+     * 关键的类：
+     * ClientComms
+     * CommsSender
+     * CommsReceiver
+     * MqttConnection
+     * MqttAsyncClient
+     * ConnectActionListener
      */
     private fun testMqtt() {
+        val client = MqttAndroidClient(this,"","")
+
+        val options = MqttConnectOptions()
+        options.password = charArrayOf()
+        options.userName = ""
+        options.connectionTimeout = 5
+        options.isCleanSession = false // 设置是否清空session,这里如果设置为false表示服务器会保留客户端的连接记录，这里设置为true表示每次连接到服务器都以新的身份连接
+        options.keepAliveInterval = 60 // The default value is 60 seconds
+        val qos = 2
+        val topic = ""
+        // 设置遗嘱消息：当客户端断开连接时，发送给相关的订阅者的遗嘱消息
+        options.setWill(topic,"offline".toByteArray(),qos,true)
+        client.connect(options)
+//        client.disconnect()
+
+
         val mqttClient = MqttClient("","")
         mqttClient.setCallback(object : MqttCallback {
             override fun connectionLost(cause: Throwable?) {

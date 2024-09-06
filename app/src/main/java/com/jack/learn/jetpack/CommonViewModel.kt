@@ -12,4 +12,8 @@ class CommonViewModel:ViewModel() {
     }
 
 
+    override fun onCleared() {
+        super.onCleared()
+        // 进行协程的取消
+    }
 }
