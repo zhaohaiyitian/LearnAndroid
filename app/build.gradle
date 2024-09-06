@@ -72,7 +72,7 @@ android {
         }
     }
 }
-
+// 禁用kapt 提升编译速度
 tasks.whenTaskAdded { task ->
     println("wangjie:"+task)
     if (task.name.contains("kapt")) {

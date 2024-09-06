@@ -1,0 +1,35 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+如何提升编译速度？
+1.把module做成aar依赖
+2.对于第三方依赖 在debug环境下做成空包依赖
+3.// 禁用kapt 提升编译速度
+tasks.whenTaskAdded { task ->
+    if (task.name.contains("kapt")) {
+        task.enabled = false
+    }
+}
+kapt的耗时主要是Kotlin文件生成APT可解析的Java Stub文件的过程
+而KAPT生成Java stub文件需要耗费大量的时间，拖慢了整体编译速度
+
+4.开启gradle的离线编译
+这将在编译时使用本地缓存的依赖项，而不尝试从网络下载新的版本，从而加快编译速度
+5.kotlin增量编译
+
+
+
