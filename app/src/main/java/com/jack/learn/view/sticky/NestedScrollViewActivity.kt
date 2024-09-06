@@ -34,6 +34,7 @@ class NestedScrollViewActivity : AppCompatActivity() {
         val llTabLayout = findViewById<LinearLayout>(R.id.llTabLayout)
         val tvContent = findViewById<TextView>(R.id.tvContent)
 
+        //viewpaper+多个列表页下可以共用RecycledViewPool
         val pool = RecycledViewPool()
 
         recyclerView.setRecycledViewPool(recyclerView.recycledViewPool)

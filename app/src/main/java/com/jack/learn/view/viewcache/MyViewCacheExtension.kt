@@ -3,6 +3,9 @@ package com.jack.learn.view.viewcache
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ *  参考 https://blog.csdn.net/u013700502/article/details/105058771?spm=1001.2014.3001.5502
+ */
 //实现自定义缓存ViewCacheExtension
 class MyViewCacheExtension: RecyclerView.ViewCacheExtension() {
     private var mAdapter: MyCacheAdapter? = null
