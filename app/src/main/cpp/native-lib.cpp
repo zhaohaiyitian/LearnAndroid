@@ -244,7 +244,7 @@ void JNICALL methodEntry(jvmtiEnv *jvmti_env, JNIEnv *jni_env, jthread thread, j
     jvmti_env->Deallocate((unsigned char *) signature);
 }
 
-//初始化工作
+//初始化工作 挂载到虚拟机上后会执行Agent_OnAttach方法
 extern "C"
 JNIEXPORT jint JNICALL
 Agent_OnAttach(JavaVM *vm, char *options, void *reserved) {

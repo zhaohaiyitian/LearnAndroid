@@ -31,6 +31,9 @@
             android:name=".view.pager.PagerVideoActivity"
             android:exported="false" />
         <activity
+            android:name=".view.pager2.Pager2VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.recycler.RecyclerViewVideoActivity"
             android:exported="false" />
         <activity

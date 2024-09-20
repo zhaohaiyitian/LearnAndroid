@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+
+data class与class有什么区别？
+data class是final的不能被继承,不支持open关键字 而class支持open关键字
+data class会自动提供equals，toString，hashCode等方法 而class则需要手动实现这些方法
+
+
