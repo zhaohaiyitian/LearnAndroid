@@ -1,11 +1,5 @@
 
-参考美团：https://tech.meituan.com/2017/06/09/webviewperf.html
-WebView优化
-App中打开WebView的第一步并不是建立连接，而是启动浏览器内核，初始化WebView
 
-
-
-给WebView放入单独进程 通过aidl进行通信 避免webview崩溃影响主进程
 
 ---js调用java
 webView.addJavascriptInterface(new JavaInterface(),"Android")
@@ -22,3 +16,17 @@ webView.evaluateJavascript("",object: ValueCallback<String> {
           }
 
 })
+
+参考美团：https://tech.meituan.com/2017/06/09/webviewperf.html
+
+WebView优化
+App中打开WebView的第一步并不是建立连接，而是启动浏览器内核，初始化WebView
+
+1.在Application中创建全局的WebView，在使用的时候直就用这个WebView来加载对应网页，并展示。
+但是这又会带来心的问题：1.额外的内存消耗，2.页面间跳转需要清空上一个页面的痕迹，更容易内存泄露。
+2.客户端代理请求， 缩短总体的页面加载时间
+   在客户端初始化WebView的同时，直接由native开始网络请求数据，
+   当页面初始化完成后，向native获取其代理请求的数据。
+3.给WebView放入单独进程 通过aidl进行通信 避免WebView崩溃影响主进程
+
+
