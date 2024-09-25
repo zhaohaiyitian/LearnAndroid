@@ -1,0 +1,17 @@
+plugins {
+    id("java-library")
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //3.4+<
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
+    compileOnly 'com.google.auto.service:auto-service:1.0-rc3'
+
+    //3.4-
+//    implementation 'com.google.auto.service:auto-service:1.0-rc1'
+    implementation project(path: ':annotation')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
