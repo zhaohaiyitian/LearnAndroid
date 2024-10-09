@@ -21,7 +21,7 @@ import com.jack.learn.hotfix.HotFixActivity
 import com.jack.learn.jetpack.JetPackActivity
 import com.jack.learn.jni.JNIActivity
 import com.jack.learn.juc.ConcurrentActivity
-import com.jack.learn.kotlin.DSLActivity
+import com.jack.learn.kotlin.dsl.DSLActivity
 import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.ThirdLibActivity
 import com.jack.learn.thirdlib.koom.OOMMonitorInitTask

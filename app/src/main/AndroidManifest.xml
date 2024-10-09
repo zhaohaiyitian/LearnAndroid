@@ -46,7 +46,7 @@
             android:name=".architecture.mvp.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".kotlin.DSLActivity"
+            android:name=".kotlin.dsl.DSLActivity"
             android:exported="false" />
         <activity
             android:name=".animator.AnimatorActivity"

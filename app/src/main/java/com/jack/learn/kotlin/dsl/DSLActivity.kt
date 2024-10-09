@@ -1,17 +1,12 @@
-package com.jack.learn.kotlin
+package com.jack.learn.kotlin.dsl
 
 import android.app.Activity
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.widget.doAfterTextChanged
-import com.jack.learn.R
-import com.jack.learn.databinding.ActivityDslBinding
 
 /**
  * 利用扩展函数和高阶函数的组合实现DSL

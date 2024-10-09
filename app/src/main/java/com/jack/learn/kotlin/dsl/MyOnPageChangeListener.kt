@@ -1,4 +1,4 @@
-package com.jack.learn.kotlin
+package com.jack.learn.kotlin.dsl
 
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener

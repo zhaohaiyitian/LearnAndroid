@@ -1,4 +1,4 @@
-package com.jack.learn.kotlin
+package com.jack.learn.kotlin.dsl
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,8 +9,8 @@ private typealias AfterTextChanged = (s: Editable?)->Unit
 private typealias OnTextChanged = (s: CharSequence?, start: Int, before: Int, count: Int)->Unit
 class MTextWatcher:TextWatcher {
 
-    private var onTextChanged:OnTextChanged? = null
-    private var afterTextChanged:AfterTextChanged? = null
+    private var onTextChanged: OnTextChanged? = null
+    private var afterTextChanged: AfterTextChanged? = null
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
     }

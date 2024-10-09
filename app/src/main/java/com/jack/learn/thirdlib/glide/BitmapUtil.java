@@ -14,6 +14,7 @@ public class BitmapUtil {
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
+        options.inMutable = true; // 复用内存 将可被inBitmap复用
         BitmapFactory.decodeResource(res,resId,options);
         options.inSampleSize = calculateInSampleSize(options,reqWidth,reqHeight);
         options.inJustDecodeBounds = false;
