@@ -6,5 +6,5 @@ interface ApiService {
 
 
 
-    suspend fun fetchUserData():UserInfo
+    suspend fun fetchUserData():BaseResponse<UserInfo>
 }

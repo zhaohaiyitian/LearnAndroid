@@ -20,6 +20,9 @@
 用suspend修饰的函数 叫挂起函数
 挂起和恢复
 
+
+协程的异常处理
+
 Flow是kotlin协程库里的一个工具 它提供了响应式编程的方式
 Flow 响应式编程
 StateFlow的基本用法甚至能够做到与LiveData完全一致
