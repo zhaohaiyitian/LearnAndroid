@@ -62,75 +62,75 @@ class KotlinActivity : AppCompatActivity() {
             MainViewModel::class.java)
         viewBinding.apply {
             button.click {
+                mViewModel.startTimer()
+
 //                lifecycleScope.launch {
-//                    mViewModel.timeFlow.collect {
-//                        textView.text = it.toString()
+//                    val job1 = launch {
+//                        delay(1000)
+//                        Log.d("wangjie","job1")
+//                    }
+//                    launch(SupervisorJob(coroutineContext[Job])) {
+//                        val supervisorJob1 = launch {
+//                            delay(1000)
+//                            throw NullPointerException()
+//                        }
+//                        val supervisorJob2 = launch {
+//                            delay(1000)
+//                            Log.d("wangjie","supervisorJob2")
+//                        }
 //                    }
 //                }
 
-
-
-                lifecycleScope.launch {
-                    val job1 = launch {
-                        delay(1000)
-                        Log.d("wangjie","job1")
-                    }
-                    launch(SupervisorJob(coroutineContext[Job])) {
-                        val supervisorJob1 = launch {
-                            delay(1000)
-                            throw NullPointerException()
-                        }
-                        val supervisorJob2 = launch {
-                            delay(1000)
-                            Log.d("wangjie","supervisorJob2")
-                        }
-                    }
-                }
-
-                lifecycleScope.launch {
-                    try {
-                        coroutineScope {
-                            val job1 = launch {
-                                delay(2000)
-                                // 如果抛出异常 ， job1 停止执行 ， job2 也会被取消，停止执行
-                                throw NullPointerException()
-                            }
-
-                            val job2 = launch {
-                                delay(2000)
-                                println("println coroutineScope job 2")
-                            }
-                            // 如果执行 cancel ,job 1 ， job 2 均取消
-                            // cancel()
-                        }
-                    } catch (e: Throwable) {
-                        // ignore
-                    }
-
-                    try {
-                        supervisorScope {
-                            val job1 = launch {
-                                delay(2000)
-                                // 如果抛出异常 ， job1 停止执行 ， job2 继续执行
-                                throw NullPointerException()
-                            }
-
-                            val job2 = launch {
-                                delay(2000)
-                                println("println supervisorScope job 2")
-                            }
-                            // 如果执行 cancel ,job 1 ， job 2 均取消
-                            // cancel()
-                        }
-                    } catch (e: Throwable) {
-                        // ignore
-                    }
+//                lifecycleScope.launch {
+//                    try {
+//                        coroutineScope {
+//                            val job1 = launch {
+//                                delay(2000)
+//                                // 如果抛出异常 ， job1 停止执行 ， job2 也会被取消，停止执行
+//                                throw NullPointerException()
+//                            }
+//
+//                            val job2 = launch {
+//                                delay(2000)
+//                                println("println coroutineScope job 2")
+//                            }
+//                            // 如果执行 cancel ,job 1 ， job 2 均取消
+//                            // cancel()
+//                        }
+//                    } catch (e: Throwable) {
+//                        // ignore
+//                    }
+//
+//                    try {
+//                        supervisorScope {
+//                            val job1 = launch {
+//                                delay(2000)
+//                                // 如果抛出异常 ， job1 停止执行 ， job2 继续执行
+//                                throw NullPointerException()
+//                            }
+//
+//                            val job2 = launch {
+//                                delay(2000)
+//                                println("println supervisorScope job 2")
+//                            }
+//                            // 如果执行 cancel ,job 1 ， job 2 均取消
+//                            // cancel()
+//                        }
+//                    } catch (e: Throwable) {
+//                        // ignore
+//                    }
+//                }
+            }
+            lifecycleScope.launch {
+                mViewModel.stateFlow.collect {
+                    textView.text = it.toString()
+                    Log.d("FlowTest", "Update time $it in UI.")
                 }
             }
         }
-        Person("yang",18)
-        test()
-        testScope()
+//        Person("yang",18)
+//        test()
+//        testScope()
     }
 
     fun test() {
