@@ -117,15 +117,6 @@ class ConcurrentActivity : AppCompatActivity() {
                 }
                 latch.countDown()
             }
-            service.submit {
-                println("task2 start...")
-                try {
-                    Thread.sleep(2000)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-                latch.countDown()
-            }
             try {
                 latch.await()
             } catch (e: InterruptedException) {
@@ -138,28 +129,22 @@ class ConcurrentActivity : AppCompatActivity() {
 
     // CyclicBarrier 字面意思回环栅栏（循环屏障），通过它可以实现让一组线程等待至某个状态（屏障点）之后再全部同时执行
     private fun testCyclicBarrier() {
-        val service = Executors.newFixedThreadPool(3)
+        val service = Executors.newFixedThreadPool(2)
         val barrier = CyclicBarrier(2,{
             Log.d("wangjie","task1 task2 finish....")
         })
         for (i in 0..3) {
             service.submit {
-                Log.d("wangjie","task1 finish....")
-                Thread.sleep(1000)
-                barrier.await()
-                Log.d("wangjie","111111111111")
-            }
-            service.submit {
                 Log.d("wangjie","task2 finish....")
                 Thread.sleep(1000)
-                barrier.await()
+                barrier.await() // await会自动计数 计数器减为零时，会自动唤醒所有线程。
                 Log.d("wangjie","2222222222222")
             }
         }
         service.shutdown()
     }
 
-    //可以⽤来控制同时访问特定资源的线程数量
+    //可以⽤来控制同时访问特定资源的线程数量   可以用于流量控制
     private fun testSemaphore() {
         val exec = Executors.newCachedThreadPool()
         val phore = Semaphore(3)
@@ -168,7 +153,7 @@ class ConcurrentActivity : AppCompatActivity() {
                 try {
                     // 获取许可
                     phore.acquire()
-                    Log.d("wangjie","获得许可: $i")
+                    Log.d("wangjie","获得许可")
                     // 休眠随机秒(表示正在执行操作)
                     TimeUnit.SECONDS.sleep((Math.random()*10+1).toLong())
                     // 访问完后，释放许可

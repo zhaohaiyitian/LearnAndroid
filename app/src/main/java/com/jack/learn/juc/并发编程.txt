@@ -24,4 +24,7 @@ ThreadPoolExecutor有多个不同参数的构造函数
 可以根据任务的类型是CPU密集型还是IO密集型 对线程数进行合理的设置
 
 
+AbstractQueuedSynchronizer（抽象队列同步器）是一个先进先出队列，用于构建锁及其他同步器的基础框架，子类通过继承AQS实现同步的需求。
+
+
 
