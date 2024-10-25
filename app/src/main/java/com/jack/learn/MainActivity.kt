@@ -26,6 +26,7 @@ import com.jack.learn.kotlin.KotlinActivity
 import com.jack.learn.thirdlib.ThirdLibActivity
 import com.jack.learn.thirdlib.koom.OOMMonitorInitTask
 import com.jack.learn.view.CustomViewActivity
+import com.jack.learn.view.pager2.Pager2VideoActivity
 import com.jack.learn.view.sticky.NestedScrollViewActivity
 import com.jack.learn.view.viewcache.RecyclerCacheActivity
 import com.jack.learn.viewpager.ViewPagerActivity
@@ -60,6 +61,9 @@ class MainActivity : AppCompatActivity() {
         viewBinding.apply {
             hotFix.click {
                 startActivity(Intent(this@MainActivity,HotFixActivity::class.java))
+            }
+            viewPager2.click {
+                startActivity(Intent(this@MainActivity,Pager2VideoActivity::class.java))
             }
             plugin.click {
 //                val clazz = Class.forName("com.jack.pluggable.Test")
