@@ -39,6 +39,12 @@
     </com.jack.learn.view.view.JackViewGroup>
 
 
+    <com.jack.learn.view.view.heart.HeartView
+        android:id="@+id/heartView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
 
 <!--    <com.jack.learn.view.view.FlowLayout-->
 <!--        android:layout_width="match_parent"-->
