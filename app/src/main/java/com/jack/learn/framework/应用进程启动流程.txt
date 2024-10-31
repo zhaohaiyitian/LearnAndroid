@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+
+ZygoteInit-->main()
+   forkSystemServer()-- 启动SystemServer进程
+   runSelectLoop()--等待AMS请求
+
+ZygoteInit.nativeZygoteInit() // 创建Binder线程池
+
+RuntimeInit--findStaticMain() 反射获得ActivityThread类 再接着获得main方法 执行main方法 由此就进入到ActivityThread类中
+
