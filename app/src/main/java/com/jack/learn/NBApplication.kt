@@ -51,8 +51,8 @@ class NBApplication: Application() {
 //        Debug.startMethodTracing("wangjie")
 
         //初始化换肤框架
-        SkinManager.getInstance().init(this)
-        SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
+//        SkinManager.getInstance().init(this)
+//        SkinManager.getInstance().loadSkinApk(getExternalFilesDir("").toString()+"/skin.apk")
 
          // 初始化插件化
 //        LoadUtil.loadClass(this)

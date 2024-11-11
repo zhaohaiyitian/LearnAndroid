@@ -17,6 +17,7 @@ import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
 import com.jack.learn.flutter.FlutterAppActivity
+import com.jack.learn.framework.ScopeStorageActivity
 import com.jack.learn.hotfix.HotFixActivity
 import com.jack.learn.jetpack.JetPackActivity
 import com.jack.learn.jni.JNIActivity
@@ -59,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
         initKOOM()
         viewBinding.apply {
+            scope.click {
+                startActivity(Intent(this@MainActivity,ScopeStorageActivity::class.java))
+            }
             hotFix.click {
                 startActivity(Intent(this@MainActivity,HotFixActivity::class.java))
             }
