@@ -6,6 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/cardview_light_background">
 
+
+    <Button
+        android:id="@+id/paging"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paging"
+        android:layout_gravity="center"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        tools:text="Paging"/>
+
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="wrap_content"

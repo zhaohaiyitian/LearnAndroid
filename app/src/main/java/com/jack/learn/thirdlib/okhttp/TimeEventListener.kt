@@ -36,7 +36,7 @@ class TimeEventListener: EventListener() {
     override fun connectEnd(
         call: Call,
         inetSocketAddress: InetSocketAddress,
-        proxy: Proxy?,
+        proxy: Proxy,
         protocol: Protocol?
     ) {
         super.connectEnd(call, inetSocketAddress, proxy, protocol)

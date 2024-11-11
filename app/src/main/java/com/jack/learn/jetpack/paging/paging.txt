@@ -1,0 +1,12 @@
+
+
+
+Paging库是一个分页库，它的主要功能帮我们加载和显示来自本地存储或网络中更大的数据集中的数据页面，可以让应用更高效地利用网络带宽和系统资源。
+
+
+
+PagingSource对象是用来定义数据源以及从该数据源检索数据
+
+PagingData对象是用于存放分页数据快照的容器,它会查询PagingSource对象并存储结果。
+
+PagingDataAdapter，它是一种处理分页数据的RecyclerView适配器。

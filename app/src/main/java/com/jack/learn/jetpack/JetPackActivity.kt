@@ -1,5 +1,6 @@
 package com.jack.learn.jetpack
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -7,11 +8,20 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.jack.learn.R
+import com.jack.learn.click
+import com.jack.learn.databinding.ActivityJetpackBinding
+import com.jack.learn.jetpack.paging.PagingActivity
 
 class JetPackActivity : AppCompatActivity(),OnDataPassListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_jetpack)
+        val binding = ActivityJetpackBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.apply {
+            paging.click {
+                startActivity(Intent(this@JetPackActivity, PagingActivity::class.java))
+            }
+        }
         val tvContent = findViewById<TextView>(R.id.tvContent)
         // 这行代码 会去ViewModelStore获取对象，如果没有 会创建一个
         val mViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)

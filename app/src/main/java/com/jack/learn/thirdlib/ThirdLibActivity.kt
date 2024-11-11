@@ -132,7 +132,7 @@ class ThirdLibActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                Log.d("wangjie",response.code().toString())
+                Log.d("wangjie",response.code.toString())
             }
 
         })
