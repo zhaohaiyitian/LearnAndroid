@@ -11,6 +11,7 @@ import com.jack.learn.R
 import com.jack.learn.click
 import com.jack.learn.databinding.ActivityJetpackBinding
 import com.jack.learn.jetpack.paging.PagingActivity
+import com.jack.learn.jetpack.workmanager.WorkManagerActivity
 
 class JetPackActivity : AppCompatActivity(),OnDataPassListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,9 @@ class JetPackActivity : AppCompatActivity(),OnDataPassListener {
         binding.apply {
             paging.click {
                 startActivity(Intent(this@JetPackActivity, PagingActivity::class.java))
+            }
+            work.click {
+                startActivity(Intent(this@JetPackActivity, WorkManagerActivity::class.java))
             }
         }
         val tvContent = findViewById<TextView>(R.id.tvContent)

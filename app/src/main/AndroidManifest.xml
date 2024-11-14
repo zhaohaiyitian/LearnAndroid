@@ -22,6 +22,9 @@
         android:theme="@style/Theme.LearnAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".jetpack.workmanager.WorkManagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".jetpack.paging.PagingActivity"
             android:exported="false" />
         <activity

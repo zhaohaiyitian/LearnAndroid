@@ -25,12 +25,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.lang.NullPointerException
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadFactory
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * kotlin代码本质上也是通过kotlin编译器编译后生成VM（虚拟机）能识别的字节码
@@ -146,6 +151,14 @@ class KotlinActivity : AppCompatActivity() {
         "wangjie".let {
             it.length
         }
+        // 返回的是函数块最后一行的值
+        with("str") {
+            this.length
+        }
+        // 返回值 是该对象
+        "str".also {
+            it.length
+        }
     }
 
     private fun testScope() {
@@ -165,10 +178,36 @@ class KotlinActivity : AppCompatActivity() {
         }
         myDispatcher.close()
         job.cancel() // 协程被取消时会抛出 CancellationException
+    }
 
 
+    /**
+     * 如何处理协程并发的数据安全
+     * 1.使用原子类 AtomicXXX
+     * 2.channel channel要设置队列容量 channel.send() channel.receive()
+     * 3.mutex 使用互斥锁
+     */
+    private fun testSafeCoroutine() {
+        runBlocking {
+            var count = 0
+            val mutex = Mutex()
+            List(1000) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    mutex.withLock {
+                        count++
+                    }
 
-
+//                    mutex.lock()
+//                    try {
+//                       mutex.lock()
+//                        count++
+//                    } finally {
+//                        mutex.unlock()
+//                    }
+                }
+            }.joinAll()
+            Log.d("wangjie", "result: $count")
+        }
     }
 
     override fun onDestroy() {
