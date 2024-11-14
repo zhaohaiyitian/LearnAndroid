@@ -14,6 +14,7 @@ import com.jack.learn.R
 import com.jack.learn.databinding.ActivityThirdLibBinding
 import com.jack.learn.thirdlib.glide.MyGlideUrl
 import com.jack.learn.thirdlib.gson.UserTypeAdapter
+import com.jack.learn.thirdlib.okhttp.HttpDns
 import com.jack.learn.thirdlib.okhttp.TimeEventListener
 import com.jack.learn.thirdlib.okhttp.TimeInterceptor
 import okhttp3.Call
@@ -116,6 +117,7 @@ class ThirdLibActivity : AppCompatActivity() {
         val okHttpClient = OkHttpClient.Builder()
             .eventListener(TimeEventListener())
             .addInterceptor(TimeInterceptor())
+            .dns(HttpDns()) // 配置HttpDNS
 //            .authenticator(object : Authenticator { // 授权
 //                override fun authenticate(route: Route?, response: Response): Request {
 //                    // 刷新token
