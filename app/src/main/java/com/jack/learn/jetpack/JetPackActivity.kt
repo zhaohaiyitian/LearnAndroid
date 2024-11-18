@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.jack.learn.R
 import com.jack.learn.click
 import com.jack.learn.databinding.ActivityJetpackBinding
+import com.jack.learn.jetpack.navigation.NavigationActivity
 import com.jack.learn.jetpack.paging.PagingActivity
 import com.jack.learn.jetpack.workmanager.WorkManagerActivity
 
@@ -24,6 +25,9 @@ class JetPackActivity : AppCompatActivity(),OnDataPassListener {
             }
             work.click {
                 startActivity(Intent(this@JetPackActivity, WorkManagerActivity::class.java))
+            }
+            navigation.click {
+                startActivity(Intent(this@JetPackActivity, NavigationActivity::class.java))
             }
         }
         val tvContent = findViewById<TextView>(R.id.tvContent)

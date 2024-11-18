@@ -1,0 +1,64 @@
+
+
+很多的跳转
+    Activity-->Activity
+    Activity--->Fragment
+    Fragment--->Fragment
+
+资源，统一调度进行跳转
+
+
+Navigation（导航）
+    设计目的：
+           1.为了补充Fragment不太好用的功能项
+           2.统一调度进行资源跳转
+
+
+
+导航图（一组xml资源）
+    所有的Activity/Fragment统一管理
+    Activity/Fragment = 目标
+
+NavHost--->作为一个顶层容器（类似于Decview-->contentView）
+
+NavController--->管理HavHost+导航图的
+
+Navigation业务功能：
+
+    1.提供Frament与Activity的回退栈协同管理
+    2.同一所有相关跳转资源，进行统一分配
+    3.提供了极致简易的底部导航栏功能
+    4.简化页面间的参数传递
+    5.深度链接的支撑
+            参数能够传递到activity或者Fragment当中
+
+
+参数传递：
+    本质上还是依赖于bundle进行数据传递，其本质是在做一次封装，结合Fragment与Activity
+    如果目标是Fragment数据填装到Arguments,如果目标是Activity数据填装到Intent中
+
+
+底部菜单栏的支持
+
+
+1.navigation是什么？
+    针对对于fragment封装的一套框架，支撑了Fragment与Activity的回退栈的协同管理，以及参数传递
+    统一的资源调度框架！
+
+2.怎么去做，三大组件负责的事情？
+    导航图：XML资源
+    NavHostView：展示容器
+    Controller：控制器
+
+3.深度链接的支持？
+    集成深度链接
+
+
+4.导航菜单的支撑！
+    自带一套还算OK的导航菜单组件
+
+
+
+
+
+

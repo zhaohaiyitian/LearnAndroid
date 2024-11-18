@@ -27,6 +27,16 @@
         android:textColor="@color/black"
         tools:text="Paging"/>
 
+    <Button
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Navigation"
+        android:layout_gravity="center"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        tools:text="Navigation"/>
+
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="wrap_content"

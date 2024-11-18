@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- item的id必须和navigation中的资源id一致 -->
+    <item
+        android:id="@+id/fa_one"
+        android:icon="@mipmap/index"
+        android:title="首页" />
+
+    <item
+        android:id="@+id/fa_second"
+        android:icon="@mipmap/cate"
+        android:title="列表" />
+
+    <item
+        android:id="@+id/fa_third"
+        android:icon="@mipmap/cart"
+        android:title="购物车" />
+
+    <item
+        android:id="@+id/fa_four"
+        android:icon="@mipmap/me"
+        android:title="我的" />
+</menu>

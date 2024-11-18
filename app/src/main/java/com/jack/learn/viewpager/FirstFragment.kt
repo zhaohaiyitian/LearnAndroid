@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
 import com.jack.learn.R
+import com.jack.learn.click
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -50,6 +52,13 @@ class FirstFragment : BaseLazyFragment() {
 
     override fun initView(rootView: View?) {
         tvContent = rootView?.findViewById<TextView>(R.id.tvContent)
+        tvContent?.let {
+            it.click {
+                val bundle = Bundle()
+                bundle.putString("name","test Params")
+                Navigation.findNavController(view!!).navigate(R.id.action_fmta_to_activity_demo,bundle)
+            }
+        }
     }
 
     override fun getLayoutRes(): Int {

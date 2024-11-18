@@ -8,6 +8,7 @@ import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -23,7 +24,18 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         viewBinding.apply {
             settings(webView)
-            webView.loadUrl("https://baidu.com") // java调用js
+            webView.loadUrl("file:///android_asset/aidl.html") // java调用js
+
+            // 通过注入JavaScript代码检查DOM元素的存在或内容，可以帮助确认页面是否正确渲染。
+            // script就是我们要执行的 js 代码，而 resultCallback 是执行结果回调，返回结果是 String 类型。
+            webView.evaluateJavascript("alert('hello, my fish, my monkey');", object : ValueCallback<String> {
+                override fun onReceiveValue(value: String?) {
+
+                }
+
+            })
+            // JsInterface()  js 可以调用该对象中添加了 @JavascriptInterface 注解的公开方法
+            webView.addJavascriptInterface(JsInterface(),"launcher") // // 此处的 launcher 可以自定义，最终是 JS 中要使用的对象
         }
     }
 
@@ -35,10 +47,20 @@ class WebViewActivity : AppCompatActivity() {
 
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 super.onReceivedTitle(view, title)
-                Log.d("wangjie","$title")
+                Log.d("wangjie","title: $title")
             }
         }
         webView.webViewClient = object : WebViewClient() {
+
+            // WebView每次请求资源时调用，允许应用拦截、修改或替换资源请求。
+            override fun shouldInterceptRequest(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): WebResourceResponse? {
+                // 监控资源加载 记录加载失败的资源
+//                Log.d("wangjie","shouldInterceptRequest")
+                return super.shouldInterceptRequest(view, request)
+            }
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
                 request: WebResourceRequest
@@ -57,19 +79,41 @@ class WebViewActivity : AppCompatActivity() {
                 Log.d("wangjie","onPageFinished ${url}")
             }
 
+            override fun onLoadResource(view: WebView?, url: String?) {
+                super.onLoadResource(view, url)
+//                Log.d("wangjie","onLoadResource ${url}")
+            }
+
             override fun onReceivedError(
                 view: WebView?,
                 request: WebResourceRequest?,
                 error: WebResourceError?
             ) {
                 super.onReceivedError(view, request, error)
+                // 处理加载错误
                 Log.d("wangjie","onReceivedError")
+            }
+
+            override fun onReceivedHttpError(
+                view: WebView?,
+                request: WebResourceRequest?,
+                errorResponse: WebResourceResponse?
+            ) {
+                super.onReceivedHttpError(view, request, errorResponse)
+                // 处理http错误
+            }
+
+            // 当页面即将可见时
+            override fun onPageCommitVisible(view: WebView?, url: String?) {
+                super.onPageCommitVisible(view, url)
+                Log.d("wangjie","onPageCommitVisible")
             }
         }
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            WebView.enableSlowWholeDocumentDraw()
 //        }
         val mWebSettings = webView.settings
+        // 允许 WebView 加载 JS
         mWebSettings.setJavaScriptEnabled(true)
 //        mWebSettings.setSupportZoom(true)
 //        mWebSettings.setBuiltInZoomControls(false)

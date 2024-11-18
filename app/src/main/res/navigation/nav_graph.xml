@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fa_one">
+
+    <!-- 路径 destination 目的地 -->
+
+    <action
+        android:id="@+id/action_fmta_to_activity_demo"
+        app:destination="@id/demoActivity"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_fmta"
+        app:destination="@id/fa_one"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_fmtb"
+        app:destination="@id/fa_second"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_fmtc"
+        app:destination="@id/fa_third"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+    <action
+        android:id="@+id/action_fmtd"
+        app:destination="@id/fa_four"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+
+
+    <fragment
+        android:id="@+id/fa_one"
+        android:name="com.jack.learn.viewpager.FirstFragment"
+        android:label="FirstFragment"
+        tools:layout="@layout/fragment_first">
+
+        <deepLink app:uri="http://www.kerwinwebsite.com/{params}"></deepLink>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fa_second"
+        android:name="com.jack.learn.viewpager.SecondFragment"
+        android:label="SecondFragment"
+        tools:layout="@layout/fragment_second" />
+    <fragment
+        android:id="@+id/fa_third"
+        android:name="com.jack.learn.viewpager.ThirdFragment"
+        android:label="ThirdFragment"
+        tools:layout="@layout/fragment_third" />
+    <fragment
+        android:id="@+id/fa_four"
+        android:name="com.jack.learn.viewpager.FourFragment"
+        android:label="FourFragment"
+        tools:layout="@layout/fragment_four" />
+
+    <activity
+        android:id="@+id/demoActivity"
+        android:name="com.jack.learn.jetpack.navigation.DemoActivity"
+        android:label="DemoActivity" />
+
+
+</navigation>

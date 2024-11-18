@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".jetpack.navigation.NavigationActivity">
+
+
+
+    <!--
+          这里申明一个主要展示容器 NavHostFragment
+          他本质上也是一个Frament
+          然后需要通过app:navGraph="@navigation/nav_graph"绑定一个导航图
+          app:defaultNavHost="true" 表示回退栈有fragment管理
+      -->
+    <fragment
+        android:id="@+id/fmt_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btn_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu"
+        android:layout_height="74dp"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/menu_select"
+        app:itemTextColor="@drawable/menu_select"/>
+
+</RelativeLayout>

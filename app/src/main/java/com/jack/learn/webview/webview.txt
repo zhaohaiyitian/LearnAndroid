@@ -29,4 +29,7 @@ App中打开WebView的第一步并不是建立连接，而是启动浏览器内�
    当页面初始化完成后，向native获取其代理请求的数据。
 3.给WebView放入单独进程 通过aidl进行通信 避免WebView崩溃影响主进程
 
+CDN
+CDN的全称是Content Delivery Network：其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输得更快、更稳定。
+
 
