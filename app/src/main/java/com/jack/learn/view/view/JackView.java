@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.Surface;
+import android.view.SurfaceControl;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -78,7 +80,11 @@ public class JackView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawText(text,getPaddingStart()+0,mTextBounds.height()+getPaddingEnd(),mPaint);
-
+        SurfaceControl surfaceControl;
+        Surface surface;
+        invalidate();
+        canvas.save();
+        canvas.restore();
 
 
 

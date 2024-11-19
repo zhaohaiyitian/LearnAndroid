@@ -182,6 +182,9 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
     implementation "androidx.work:work-runtime:2.3.4"
+
+    // 环信
+    implementation 'io.hyphenate:hyphenate-chat:3.9.4'
 //
 //    // ARouter
 //    implementation 'com.alibaba:arouter-api:1.5.2'

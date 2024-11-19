@@ -24,6 +24,9 @@ abstract class AppDataBase: RoomDatabase() {
                             .databaseBuilder(context.applicationContext,AppDataBase::class.java,"my_database")
                             .enableMultiInstanceInvalidation() // 支持多进程
                             .allowMainThreadQueries() // 允许在主线程操作数据库
+                            .fallbackToDestructiveMigration() // 破坏性的数据库迁移
+                            .fallbackToDestructiveMigrationFrom(2) //部分破坏性的数据库迁移
+                            .addMigrations(MyMigration(1,2)) // 初始版本-目标版本
                             .build()
                     }
                 }

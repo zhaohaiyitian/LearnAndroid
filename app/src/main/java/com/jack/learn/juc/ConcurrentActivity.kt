@@ -3,8 +3,6 @@ package com.jack.learn.juc
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.Pools.SimplePool
-import com.jack.learn.aidl.Person
 import com.jack.learn.click
 import com.jack.learn.databinding.ActivityConcurrentBinding
 import java.util.concurrent.ArrayBlockingQueue
@@ -22,6 +20,7 @@ import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.thread
 
 
 /**
@@ -167,6 +166,30 @@ class ConcurrentActivity : AppCompatActivity() {
             exec.execute(task)
         }
         exec.shutdown()
+    }
+
+
+    /**
+     * 如何让三个线程交替打印ABC
+     */
+    private fun order() {
+        val sa = Semaphore(1)
+        val sb = Semaphore(0)
+        val sc = Semaphore(0)
+        val t1 = thread { doOrder("A",sa,sb) }
+        val t2 = thread { doOrder("B",sb,sc) }
+        val t3 = thread { doOrder("C",sc,sa) }
+        t1.start()
+        t2.start()
+        t3.start()
+    }
+
+    private fun doOrder(letter: String,cur: Semaphore,next: Semaphore) {
+        for (i in 0 until 3) {
+            cur.acquire()
+            Log.d("wangjie",letter)
+            next.release()
+        }
     }
 
     private fun testThreadPool() {
