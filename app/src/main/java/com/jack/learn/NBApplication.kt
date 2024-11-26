@@ -75,7 +75,9 @@ class NBApplication: Application() {
         //在NBApplication中预先初始化Flutter引擎以提升Flutter页面打开速度
         // 一个Engine代表着一个flutter进程实例(dart解析器，flutter平台线程)
         val flutterEngine = FlutterEngine(this)
-        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+
+
+        flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault()) // 执行dart代码
         FlutterEngineCache.getInstance().put(CACHED_ENGINE_ID,flutterEngine)
         initClearMemory()
 //        Debug.stopMethodTracing()

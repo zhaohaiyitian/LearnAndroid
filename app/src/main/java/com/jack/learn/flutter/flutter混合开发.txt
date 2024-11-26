@@ -2,14 +2,21 @@
 
 
 
-原生和Flutter的通信是进程间通信
+原生和Flutter的通信是进程间通信 是异步的
 
 
 JVM进程 Dart进程
 
 
-EventChannel  事件的传递
 
-MethodChannel 方法的传递
+
+消息信使BinaryMessenger
+
+EventChannel  数据流的通信 比如手机电量的变化，网络的变化，陀螺仪，传感器
+
+MethodChannel  用于传统方法调用，一次性通信 比如flutter调用Native拍照
+invokeMethod 用于Native调用Flutter端
 
 BasicMessageChannel 消息的传递
+
+以上三种通信都是全双工通信
