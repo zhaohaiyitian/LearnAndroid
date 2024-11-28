@@ -5,7 +5,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg"
+    android:background="@color/purple_500"
     android:padding="16dp"
     app:is_skin="true">
 
@@ -16,7 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <Button
+                android:id="@+id/compose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Compose"
+                android:textSize="17dp"
+                android:textColor="@color/black" />
             <Button
                 android:id="@+id/scope"
                 android:layout_width="match_parent"

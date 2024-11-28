@@ -13,6 +13,7 @@ import com.jack.learn.apm.APMActivity
 import com.jack.learn.apm.startup.Utils
 import com.jack.learn.architecture.plugin.PluginContainerActivity
 import com.jack.learn.architecture.plugin.PluginManagerImpl
+import com.jack.learn.compose.ComposeActivity
 import com.jack.learn.database.DataBaseActivity
 import com.jack.learn.databinding.ActivityMainBinding
 import com.jack.learn.designpattern.DesignPatternActivity
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity() {
 
         initKOOM()
         viewBinding.apply {
+            compose.click {
+                startActivity(Intent(this@MainActivity,ComposeActivity::class.java))
+            }
             scope.click {
                 startActivity(Intent(this@MainActivity,ScopeStorageActivity::class.java))
             }

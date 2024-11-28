@@ -119,6 +119,10 @@
             android:name=".kotlin.KotlinActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".compose.ComposeActivity"
+            android:exported="false" />
+
         <service android:name=".aidl.service.ServerService" />
 
         <provider
