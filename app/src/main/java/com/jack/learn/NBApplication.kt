@@ -7,6 +7,8 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
+import androidx.core.os.TraceCompat
+import androidx.tracing.Trace
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.Resource
 import com.jack.learn.architecture.plugin.HookUtil
@@ -36,7 +38,9 @@ class NBApplication: Application() {
         var isHttpAlive = true
     }
     override fun attachBaseContext(base: Context?) {
+        Trace.beginSection("")
         super.attachBaseContext(base)
+        Trace.endSection()
     }
 
     override fun onCreate() {

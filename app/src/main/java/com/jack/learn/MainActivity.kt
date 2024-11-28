@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 //        val factory = SkinFactory(delegate)
 //        layoutInflater.factory2 = factory
+        setTheme(R.style.Theme_LearnAndroid) // 还原回原来的主题
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
         // viewBinding 换肤有问题 待解决
@@ -140,6 +141,11 @@ class MainActivity : AppCompatActivity() {
             val view = viewStub.inflate() // view：就是真正被添加的布局
             showFlutterView(viewBinding.flFlutter)
         }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        // xml渲染成view tree 用户可交互
     }
 
     private fun showFlutterView(layout: FrameLayout) {
