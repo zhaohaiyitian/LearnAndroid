@@ -8,17 +8,16 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.jack.learn.apm.startup.StartUp;
-import com.jack.learn.apm.startup.manager.StartupManager;
+import com.jack.learn.apm.startup.Startup;
+import com.jack.learn.apm.startup.manage.StartupManager;
 
 import java.util.List;
 
 public class StartupProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
-        List<StartUp<?>> startups = null;
         try {
-            startups = StartupInitializer
+            List<Startup<?>> startups = StartupInitializer
                     .discoverAndInitializ(getContext(), getClass().getName());
             new StartupManager.Builder()
                     .addAllStartup(startups)
@@ -26,9 +25,8 @@ public class StartupProvider extends ContentProvider {
                     .start()
                     .await();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-
         return true;
     }
 

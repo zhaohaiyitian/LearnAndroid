@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class StartupSortStore {
     //所有的任务
-    List<StartUp<?>> result;
-    Map<Class<? extends StartUp>, StartUp<?>> startupMap;
+    List<Startup<?>> result;
+    Map<Class<? extends Startup>, Startup<?>> startupMap;
     //任务依赖表
-    Map<Class<? extends StartUp>, List<Class<? extends StartUp>>> startupChildrenMap;
+    Map<Class<? extends Startup>, List<Class<? extends Startup>>> startupChildrenMap;
 
-    public StartupSortStore(List<StartUp<?>> result, Map<Class<? extends StartUp>, StartUp<?>> startupMap, Map<Class<? extends StartUp>, List<Class<? extends StartUp>>> startupChildrenMap) {
+    public StartupSortStore(List<Startup<?>> result, Map<Class<? extends Startup>, Startup<?>> startupMap, Map<Class<? extends Startup>, List<Class<? extends Startup>>> startupChildrenMap) {
         this.result = result;
         this.startupMap = startupMap;
         this.startupChildrenMap = startupChildrenMap;
@@ -18,27 +18,27 @@ public class StartupSortStore {
 
 
     //set and get method
-    public List<StartUp<?>> getResult() {
+    public List<Startup<?>> getResult() {
         return result;
     }
 
-    public void setResult(List<StartUp<?>> result) {
+    public void setResult(List<Startup<?>> result) {
         this.result = result;
     }
 
-    public Map<Class<? extends StartUp>, StartUp<?>> getStartupMap() {
+    public Map<Class<? extends Startup>, Startup<?>> getStartupMap() {
         return startupMap;
     }
 
-    public void setStartupMap(Map<Class<? extends StartUp>, StartUp<?>> startupMap) {
+    public void setStartupMap(Map<Class<? extends Startup>, Startup<?>> startupMap) {
         this.startupMap = startupMap;
     }
 
-    public Map<Class<? extends StartUp>, List<Class<? extends StartUp>>> getStartupChildrenMap() {
+    public Map<Class<? extends Startup>, List<Class<? extends Startup>>> getStartupChildrenMap() {
         return startupChildrenMap;
     }
 
-    public void setStartupChildrenMap(Map<Class<? extends StartUp>, List<Class<? extends StartUp>>> startupChildrenMap) {
+    public void setStartupChildrenMap(Map<Class<? extends Startup>, List<Class<? extends Startup>>> startupChildrenMap) {
         this.startupChildrenMap = startupChildrenMap;
     }
 }

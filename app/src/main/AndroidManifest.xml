@@ -129,7 +129,7 @@
             android:name=".apm.startup.provider.StartupProvider"
             android:authorities="${applicationId}.android_startup">
             <meta-data
-                android:name="com.jack.learn.apm.startup.task.Task5"
+                android:name="com.jack.learn.apm.startup.tasks.Task5"
                 android:value="android.startup" />
         </provider>
 
