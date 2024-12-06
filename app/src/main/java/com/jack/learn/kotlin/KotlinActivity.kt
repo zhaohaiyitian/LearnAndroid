@@ -11,7 +11,9 @@ import com.jack.learn.R
 import com.jack.learn.click
 import com.jack.learn.databinding.ActivityKotlinBinding
 import com.jack.learn.jetpack.UserViewModel
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
@@ -24,6 +26,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
@@ -36,6 +40,8 @@ import java.lang.NullPointerException
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadFactory
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.thread
+import kotlin.coroutines.CoroutineContext
 
 /**
  * kotlin代码本质上也是通过kotlin编译器编译后生成VM（虚拟机）能识别的字节码
@@ -85,6 +91,17 @@ class KotlinActivity : AppCompatActivity() {
 //                        }
 //                    }
 //                }
+               lifecycleScope.launch {
+                   flow {
+                       emit(222)
+                       Log.d("wangjie","emit: "+Thread.currentThread().name)
+                   }.flowOn(Dispatchers.IO)
+                       .collect{
+                           Log.d("wangjie","collect: "+Thread.currentThread().name)
+                           Log.d("wangjie",it.toString())
+                       }
+               }
+
 
 //                lifecycleScope.launch {
 //                    try {

@@ -128,42 +128,43 @@ fun main() {
 //
 //        }
 
-//        val receiveChannel: ReceiveChannel<Int> = GlobalScope.produce {
-//            repeat(1000) {
-//                delay(1000)
-//                send(1)
-//            }
-//        }
-//        val consumer = GlobalScope.launch {
-//            for (i in receiveChannel) {
-//                println("recevie: $i")
-//            }
-//        }
-//        consumer.join()
+        val receiveChannel: ReceiveChannel<Int> = GlobalScope.produce {
+            repeat(1000) {
+                delay(1000)
+                send(1)
+            }
+        }
+        val consumer = GlobalScope.launch {
+            for (i in receiveChannel) {
+                println("recevie: $i")
+            }
+        }
+        consumer.join()
 
-//        val sendChannel: SendChannel<Int> = GlobalScope.actor {
-//            while (true) {
-//                var element = receive()
-//                println(element)
-//            }
-//        }
-//
-//        val producer = GlobalScope.launch {
-//            for (i in 0..3) {
-//                sendChannel.send(i)
-//            }
-//        }
-//        producer.join()
-//        var count = 0
-//        val mutex= Mutex()
-//        List(1000) {
-//            GlobalScope.launch {
-//                mutex.withLock {
-//                    count++
-//                }
-//            }
-//        }.joinAll()
-//        println(count)
+        val sendChannel: SendChannel<Int> = GlobalScope.actor {
+            while (true) {
+                var element = receive()
+                println(element)
+            }
+        }
+
+        val producer = GlobalScope.launch {
+            delay(1000)
+            for (i in 0..3) {
+                sendChannel.send(i)
+            }
+        }
+        producer.join()
+        var count = 0
+        val mutex= Mutex()
+        List(1000) {
+            GlobalScope.launch {
+                mutex.withLock {
+                    count++
+                }
+            }
+        }.joinAll()
+        println(count)
 //
 //        val semaphore = Semaphore(1)
 //        List(1000) {
