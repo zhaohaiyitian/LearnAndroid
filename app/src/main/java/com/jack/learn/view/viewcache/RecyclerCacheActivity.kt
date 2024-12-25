@@ -15,6 +15,7 @@ class RecyclerCacheActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         viewBinding.apply {
             val linearLayoutManager = LinearLayoutManager(this@RecyclerCacheActivity, LinearLayoutManager.VERTICAL,false)
+            linearLayoutManager.isItemPrefetchEnabled = true // 设置预加载
             recyclerView.layoutManager = linearLayoutManager
             recyclerView.addItemDecoration(DividerItemDecoration(this@RecyclerCacheActivity,DividerItemDecoration.VERTICAL))
             initData()

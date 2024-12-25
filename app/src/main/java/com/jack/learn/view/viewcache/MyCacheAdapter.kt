@@ -93,4 +93,11 @@ class MyCacheAdapter(private val data: List<String>) :
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
         super.onViewDetachedFromWindow(holder)
     }
+
+    /**
+     *  重写onFailedToRecycleView 强制返回true 带有属性动画的ViewHolder就可以被回收了
+     */
+    override fun onFailedToRecycleView(holder: RecyclerView.ViewHolder): Boolean {
+        return true
+    }
 }
