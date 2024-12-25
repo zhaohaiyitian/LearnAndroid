@@ -2,6 +2,7 @@ package com.jack.learn.compose
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +54,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jack.learn.R
 
-class ComposeActivity : AppCompatActivity() {
+class ComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_LearnAndroid)
@@ -66,8 +67,6 @@ class ComposeActivity : AppCompatActivity() {
 //            AnimatedContentExample()
             AnimateColorAsStateExample()
         }
-
-
     }
 }
 

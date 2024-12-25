@@ -176,6 +176,21 @@ class KotlinActivity : AppCompatActivity() {
         "str".also {
             it.length
         }
+        // map函数是一个用于对集合中的每个元素执行操作并返回一个新集合的扩展函数
+        "as".map {
+            it+"ppp"
+        }
+        val list = listOf(1,2,3,4,5)
+        list.map {
+            it*it
+        }
+        // 将其中多个集合中的元素合并后返回一个包含所有元素的单一集合
+        val list2 = listOf(listOf(1,2,3),listOf(4,5,6),listOf(7,8,9))
+        val flatMap = list2.flatMap {
+            it
+        }
+        Log.d("wangjie",flatMap.toString())
+        // map和flatMap额度区别是map的转换函数是一对一 flatMap的转换函数是一对多
     }
 
     private fun testScope() {

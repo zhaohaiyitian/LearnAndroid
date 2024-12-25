@@ -7,3 +7,8 @@ fun View.click(block: ()->Unit) {
         block()
     }
 }
+
+
+fun String.addSuffix(suffix: String): String {
+    return this + suffix
+}

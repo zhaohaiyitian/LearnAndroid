@@ -38,6 +38,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.sync.withPermit
+import kotlinx.coroutines.withContext
 
 
 fun main() {
@@ -190,6 +191,14 @@ fun main() {
 //                println(value)
 //            }
 //        }
+        val channel = Channel<Long>()
+        GlobalScope.launch {
+            val iterator = channel.iterator()
+            while (iterator.hasNext()) {
+                val element = iterator.next()
+                delay(element)
+            }
+        }
 
         val flow = flow {
             repeat(5) {
@@ -198,5 +207,13 @@ fun main() {
         }
         flow.transform { emit(it*2) }
             .collect()
+
+        channelFlow {
+            send(1)
+            withContext(Dispatchers.IO) {
+                send(2)
+            }
+        }
+        val stateFlow = MutableStateFlow(0)
     }
 }
